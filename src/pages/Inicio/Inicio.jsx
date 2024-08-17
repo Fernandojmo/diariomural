@@ -51,7 +51,7 @@ const Inicio = () => {
           </Col>
           <Col md={12} lg={6}>
             <h2 className='text-center m-2 p-2'>
-              Nuestro objetivo
+              Objetivo
             </h2>
             <p className='text-center m-2 p-2'>
               Nuestra misión es ofrecer a nuestros clientes una experiencia única a través de la elaboración de cervezas de alta calidad, utilizando ingredientes naturales y procesos artesanales que respetan la tradición cervecera. Queremos ser reconocidos como una marca que promueve el consumo responsable de alcohol y que contribuye al desarrollo sostenible de las comunidades en las que operamos.
