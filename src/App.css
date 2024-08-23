@@ -1,4 +1,16 @@
+:root {
+  --fuenteHeading: 'Inter', sans-serif;
+
+  --violeta: #B418A4;
+  --blanco: #ffffff;
+  --negro: #000000;
+  --gris: #474747;
+}
+
+
+
 .App {
   text-align: center;
+  font-family: var(--fuenteHeading);
 }
 

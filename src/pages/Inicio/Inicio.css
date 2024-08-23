@@ -1,0 +1,13 @@
+.cartelera {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    margin: 0.5rem 1rem;
+
+
+}
+
+.cartelera--titulo {
+    background-color: var(--verde);
+    padding: 0 0 0 2rem;
+    color: var(--blanco);
+}

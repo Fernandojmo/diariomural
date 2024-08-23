@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import './Inicio.css';
 
 const Inicio = () => {
 
@@ -39,6 +40,13 @@ const Inicio = () => {
           />
         </Carousel.Item>
       </Carousel>
+      </div>
+      <div className='cartelera'>
+        <div className='cartelera--titulo'>
+          <h2>CARTELERA</h2>
+        </div>
+        <div className='cartelera--espacio'>
+        </div>
       </div>
       <div className='container'>
         <Row className='row'>

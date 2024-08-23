@@ -9,15 +9,9 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 const Navigation = () => {
   return (
     <div>
-        {/* <NavLink to='/inicio'>Inicio</NavLink>
-        <NavLink to='/menu'>Menu</NavLink>
-        <NavLink to='/reservas'>Reservas</NavLink>
-        <NavLink to='/nosotros'>Nosotros</NavLink>
-        <NavLink to='/contactanos'>Contactanos</NavLink> */}
-
               <>
                 {['sm'].map((expand) => (
-                  <Navbar key={expand} bg="warning" expand={expand}>
+                  <Navbar key={expand} expand={expand}>
                     <Container fluid>
                       <Navbar.Brand href="/" className='h1'>La bodega cervecera</Navbar.Brand>
                       <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
