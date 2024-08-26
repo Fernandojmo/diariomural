@@ -17,12 +17,12 @@ const Footer = () => {
                 }
             `}
         </style>
-        <div id='rrss' className='bg-warning d-flex flex-direction-row justify-content-center align-items-center'>
+        {/* <div id='rrss' className='bg-warning d-flex flex-direction-row justify-content-center align-items-center'>
             <span className='p-2'><img className='img-fluid' src={require('../images/facebook.png')} alt="" /></span>
             <span className='p-2'><img className='img-fluid' src={require('../images/instagram.png')} alt="" /></span>
             <span className='p-2'><img className='img-fluid' src={require('../images/twitter.png')} alt="" /></span>
-        </div>
-        <div className='d-flex justify-content-center bg-black p-4 text-center text-white'>
+        </div> */}
+        <div className='d-flex justify-content-center p-4 text-center'>
             <Container>
                 <Row>
                     <Col xs={12} sm={6} md={4}>

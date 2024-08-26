@@ -19,23 +19,23 @@ const Inicio = () => {
         <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
           <img
-            className="d-block w-100 vh-25"
-            src={require('./../../images/bar.jpg')}
+            className="d-block vh-25"
+            src={require('./../../images/Carrusel1.jpg')}
             alt="First slide"
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100 mh-25"
-            src={require('./../../images/vitrina.jpg')}
+            className="d-block mh-25"
+            src={require('./../../images/Carrusel2.jpg')}
             alt="Second slide"
             
           />
         </Carousel.Item>
         <Carousel.Item>
           <img
-            className="d-block w-100 mh-25"
-            src={require('./../../images/degustacion1.jpg')}
+            className="d-block mh-25"
+            src={require('./../../images/Carrusel3.jpg')}
             alt="Third slide"
           />
         </Carousel.Item>
@@ -87,6 +87,48 @@ const Inicio = () => {
             </Col>
         </Row>
       </div>
+      {/* <head>
+  <title>Diario Mural Curicó</title>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Diario Mural Curicó</h1>
+    <h2>Cartelera</h2>
+  </header>
+  <div class="container">
+    <div class="card">
+  
+      <h2>Sáb 2 Dic.</h2>
+      <p><strong>Categoría:</strong> Nombre Actividad</p>
+      <p><strong>Organiza:</strong> Nombre del organizador</p>
+      <div class="location">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Villota 78 A, Curicó</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Sáb 2 Dic.</h2>
+      <p><strong>Categoría:</strong> Nombre Actividad</p>
+      <p><strong>Organiza:</strong> Nombre del organizador</p>
+      <div class="location">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Villota 78 A, Curicó</p>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Sáb 2 Dic.</h2>
+      <p><strong>Categoría:</strong> Nombre Actividad</p>
+      <p><strong>Organiza:</strong> Nombre del organizador</p>
+      <div class="location">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>Villota 78 A, Curicó</p>
+      </div>
+    </div>
+  </div>
+</body> */}
     </div>
 
   )
