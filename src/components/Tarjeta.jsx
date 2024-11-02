@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import dayjs from 'dayjs';
 // import Cartadisp from '../pages/Menu/Cartadisp'
 
 const Tarjeta = ({menu , setMenu}) => {
@@ -65,17 +66,21 @@ const Tarjeta = ({menu , setMenu}) => {
             </Col>
             <Col xs={12} sm={9} md={10}>
               <div id="contenedorcartas" className='m-2 p-2 border border-warning rounded'>
-                <Row xs={1} sm={2} md={3} lg={4} xl={5} xxl={6} className="g-4">
+                <Row xs={1} sm={1} md={1} lg={1} xl={1} xxl={1} className="g-4">
                   {menu.map(plato=> (
-                    <Col key={plato.id}>
-                      <Card className="text-center" style={{ height: '33rem',width: '11rem', margin:'auto', text:'center'}}>
-                      <Card.Img variant="top" width='250rem' src={plato.image} />
-                      <Card.Body>
-                        <Card.Title>{plato.nombre}</Card.Title>
-                        <Card.Text>${plato.precio}</Card.Text>
-                        <Card.Text>{plato.descripcion}</Card.Text>
-                        <Button variant="primary">Agregar al carrito</Button>
-                      </Card.Body>
+                    <Col className="d-flex" key={plato.id}>
+                      <Card className="text-center flex-fill">
+                          <Card.Img variant="top" src={plato.image} style={{ height: '150px', objectFit: 'cover' }} />
+                          <Card.Body>
+                            <Card.Title>{plato.nombre}</Card.Title>
+                            <Card.Text>{dayjs(plato.fecha.toDate()).format('D-MM-YY H:m')}</Card.Text>
+                            <Card.Text>{plato.categoria}</Card.Text>
+                            <Card.Text>{plato.organiza}</Card.Text>
+                            <Card.Text>${plato.precio}</Card.Text>
+                            <Card.Text>{plato.descripcion}</Card.Text>
+                            <Button variant="primary">Ver detalles</Button>
+                          </Card.Body>
+                        
                       </Card>
                     </Col>
                     ))}
