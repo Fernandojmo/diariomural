@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../config/Firebase';
 import { collection, getDocs, addDoc} from 'firebase/firestore';
-import Tarjetareserva from  '../../components/Tarjetareserva'
+// import Tarjetareserva from  '../../components/Tarjetareserva'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 // import Formulario from '../../components/Form'
@@ -13,7 +13,7 @@ const Reservas = () => {
         useEffect (()=>{
         const getReserva = async() => {
             try{
-            const collectionRef= collection(db, 'reservas')
+            const collectionRef= collection(db, 'menu')
             const response = await getDocs(collectionRef)
     
             const docs = response.docs.map((doc)=>{
@@ -33,8 +33,12 @@ const Reservas = () => {
     const valoresIniciales={
         fecha:'',
         hora:'',
-        mesa:'',
-        nombre:''
+        nombre:'',
+        categoria:'',
+        organiza:'',
+        precio:'',
+        image:'',
+        
 
     }
 
@@ -52,7 +56,7 @@ const Reservas = () => {
     const reservarMesa=async(e)=>{
       e.preventDefault()
       try{
-        const collectionRef2=collection(db, 'reservas')
+        const collectionRef2=collection(db, 'menu')
         await addDoc(collectionRef2, {
             ...user
         })
@@ -68,34 +72,38 @@ const Reservas = () => {
             <Form className='m-4 p-4' onSubmit={reservarMesa}>
               <fieldset>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label htmlFor="disabledTextInput">Nombre de la reserva:  </Form.Label>
-                  <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' id="disabledTextInput" placeholder="Nombre" />
+                  <Form.Label >Nombre actividad</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label htmlFor="disabledSelect">Mesa a reservar</Form.Label>
-                  <Form.Select onChange={catchInputs} value={user.mesa} required name='mesa' id="disabledSelect">
-                    <option></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
+                  <Form.Label htmlFor="disabledSelect">Categoria</Form.Label>
+                  <Form.Select onChange={catchInputs} value={user.categoria} required name='categoria' id="disabledSelect">
+                    <option>Artes y diseño</option>
+                    <option>Eventos, Festivales y Carrete</option>
+                    <option>Deportes</option>
+                    <option>Gastronomía</option>
+                    <option>Encuentros, Conferencias, Seminarios, Ferias, Exposiciones</option>
+                    <option>Cursos, Talleres y Concursos</option>
+                    <option>Musica y Danza</option>
+                    <option>Teatro y Cine</option>
+                    <option>Turismo</option>
+                    <option>Otro</option>
                   </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label >Institucion que organiza</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.organiza} required name='organiza'  placeholder="Institucion que organiza" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label >Precio</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.precio} required name='precio' type="number" placeholder="Precio" />
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <div>
                       <div className="row">
                           <div className="col-md-4 m-2">
                               <Form.Group controlId="dob">
-                                  <Form.Label>Fecha a reservar</Form.Label>
+                                  <Form.Label>Fecha Actividad</Form.Label>
                                   <Form.Control onChange={catchInputs} value={user.fecha} required type="date" name="fecha" placeholder="Date" />
                               </Form.Group>
                           </div>
@@ -111,18 +119,20 @@ const Reservas = () => {
                           </div>
                       </div>
                   </div>
-                  <Form.Check 
-                      required
-                      className='m-2'
-                      type="checkbox"
-                      id="disabledFieldsetCheck"
-                      label="Confirmar Reserva"
-                  />
+
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label >Link fotografia</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.image} required name='image'  placeholder="Link fotografia" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label >Dirección</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
                 </Form.Group>
                 <Button type="submit" className='m-2'>Reservar</Button>
               </fieldset>
             </Form>
-            <Tarjetareserva reservas={reserva} setReserva={setReserva}/> 
+            {/* <Tarjetareserva reservas={reserva} setReserva={setReserva}/>  */}
         </div>
     )
 }

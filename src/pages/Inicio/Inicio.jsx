@@ -51,11 +51,15 @@ const Inicio = () => {
           </Col>
           <Col md={12} lg={6}>
             <h2 className='text-center m-2 p-2'>
-              Nuestro objetivo
+            Descripción general del diario mural.
             </h2>
+
             <p className='text-center m-2 p-2'>
-              Nuestra misión es ofrecer a nuestros clientes una experiencia única a través de la elaboración de cervezas de alta calidad, utilizando ingredientes naturales y procesos artesanales que respetan la tradición cervecera. Queremos ser reconocidos como una marca que promueve el consumo responsable de alcohol y que contribuye al desarrollo sostenible de las comunidades en las que operamos.
-              Queremos convertirnos en la marca líder en la industria cervecera, reconocida por su excelencia en la elaboración de cervezas y su compromiso con la calidad, la innovación y el cuidado del medio ambiente. Nos esforzamos por ofrecer una amplia variedad de cervezas que satisfagan los gustos y preferencias de nuestros clientes, mientras mantenemos nuestro compromiso con la sostenibilidad y la responsabilidad social.
+              En un mar de personas con banderas en mano, cada uno pretende visibilizar la propia levantándola por sobre las demás, sin mucho éxito debido a que se pierden en la masa.
+              Esta metáfora, refleja el problema de dispersión de la agenda de actividades en la provincia, debido a su publicación independiente a través de redes sociales y donde el algoritmo no logra entregar una cartelera total y congruente al público general.
+              Algo que hemos observando en nuestra gente que manifiesta no estar enterada de las actividades que se realizan en sus localidades.
+              DMC pretende dar una solución focalizada a nivel provincial, aunando y visibilizando una cartelera unificada de actividades para la provincia.
+              Así, queremos aportar a los gestores de actividades, a la identidad cultural, a una provincia más activa y mejor conectada.
             </p>
           </Col>
         </Row>
@@ -64,10 +68,11 @@ const Inicio = () => {
         <Row className='row'>
           <Col md={12} lg={6}>
               <h2 className='text-center m-2 p-2'>
-                Nuestra Historia
+                Quienes somos
               </h2>
               <p className='text-center m-2 p-2'>
-              La bodega cervecera fue fundada en 1990 por un grupo de amigos que compartían la pasión por la cerveza artesanal. Al principio, elaboraban cervezas en pequeñas cantidades en el garaje de uno de ellos y las vendían en eventos locales. Con el tiempo, la popularidad de su cerveza aumentó y decidieron invertir en una fábrica. Hoy en día, La bodega cervecera es una empresa líder en la industria cervecera con una amplia variedad de cervezas que se venden en todo el mundo. A pesar de su éxito, la empresa mantiene su compromiso con la elaboración de cervezas de alta calidad y sigue siendo propiedad de sus fundadores originales.
+                Somos 3 vecinos de Curicó y nos preocupa mucho la falta de participación ciudadana en la oferta cultural local y la generación de identidad local. A nuestro parecer, algunos de los problemas a afrontar hoy son la falta de motivación en la ciudadanía y la falta de una cartelera de actividades accesible y unificada.
+                Somos personas de entre 30 y 42 años, trabajamos en nuestra ciudad y nos propusimos desarrollar una solución a estas cuestiones que nos preocupan y motivan mucho. Poseemos las ideas y las habilidades necesarias para dar luz a este proyecto.
               </p>
             </Col>
             <Col md={12} lg={6}>

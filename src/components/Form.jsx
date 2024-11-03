@@ -7,11 +7,11 @@ const Formulario = () => {
     <Form className='m-4 p-4'>
     <fieldset>
       <Form.Group className="mb-3 m-2">
-        <Form.Label htmlFor="disabledTextInput">Nombre de la reserva:  </Form.Label>
+        <Form.Label htmlFor="disabledTextInput">Nombre Actividad:  </Form.Label>
         <Form.Control id="disabledTextInput" placeholder="Nombre" />
       </Form.Group>
       <Form.Group className="mb-3 m-2">
-        <Form.Label htmlFor="disabledSelect">Mesa a reservar</Form.Label>
+        <Form.Label htmlFor="disabledSelect">categoria</Form.Label>
         <Form.Select id="disabledSelect">
           <option>1</option>
           <option>2</option>

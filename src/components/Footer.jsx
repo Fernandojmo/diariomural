@@ -17,7 +17,7 @@ const Footer = () => {
                 }
             `}
         </style>
-        <div id='rrss' className='bg-warning d-flex flex-direction-row justify-content-center align-items-center'>
+        <div id='rrss' className='bg-info d-flex flex-direction-row justify-content-center align-items-center'>
             <span className='p-2'><img className='img-fluid' src={require('../images/facebook.png')} alt="" /></span>
             <span className='p-2'><img className='img-fluid' src={require('../images/instagram.png')} alt="" /></span>
             <span className='p-2'><img className='img-fluid' src={require('../images/twitter.png')} alt="" /></span>

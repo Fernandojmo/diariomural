@@ -17,28 +17,28 @@ const Navigation = () => {
 
               <>
                 {['sm'].map((expand) => (
-                  <Navbar key={expand} bg="warning" expand={expand}>
+                  <Navbar key={expand} bg="info" expand={expand}>
                     <Container fluid>
-                      <Navbar.Brand href="/" className='h1'>La bodega cervecera</Navbar.Brand>
+                      <Navbar.Brand href="/" className='h1'>Diario Mural Curicó</Navbar.Brand>
                       <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                       <Navbar.Offcanvas
                         id={`offcanvasNavbar-expand-${expand}`}
                         aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                         placement="end"
                       >
-                        <Offcanvas.Header className='bg-warning h1' closeButton>
+                        <Offcanvas.Header className='bg-info h1' closeButton>
                           <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                            La bodega cervecera
+                            Diario Mural Curicó
                           </Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                          <Nav className="justify-content-start flex-grow-1 pe-3">
-                            <Nav.Link href='/' className='text-white bg-dark border-dark rounded m-1 p-2'>Inicio</Nav.Link>
-                            <Nav.Link href='/cartadisp' className='text-white bg-dark border-dark rounded m-1 p-2'>Menu</Nav.Link>
+                          <Nav className="justify-content-center flex-grow-1 pe-3">
+                            <Nav.Link href='/' className='text-white bg-success border-dark rounded m-1 p-2'>Inicio</Nav.Link>
+                            <Nav.Link href='/cartadisp' className='text-white bg-success border-dark rounded m-1 p-2'>Actividades</Nav.Link>
                             {/* <Nav.Link href='/reservas'>Reservas</Nav.Link>
                             <Nav.Link href='/nosotros'>Nosotros</Nav.Link>
                             <Nav.Link href='/contactanos'>Contactanos</Nav.Link> */}
-                            <Nav.Link href='/reservas' className='text-white bg-dark border-dark rounded m-1 p-2'>Reservas</Nav.Link>
+                            <Nav.Link href='/reservas' className='text-white bg-success border-dark rounded m-1 p-2'>Publicar</Nav.Link>
 
 
                             {/* <NavDropdown
