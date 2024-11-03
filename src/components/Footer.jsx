@@ -28,16 +28,13 @@ const Footer = () => {
                     <Col xs={12} sm={6} md={4}>
                         <ul className='m-4 list-unstyled'>
                             <li>
-                                <h3>LA EMPRESA</h3>
+                                <h3>NOSOTROS</h3>
                             </li>
                             <li>
                                 <p>Terminos y condiciones</p>
                             </li>
                             <li>
-                                <p>Blog</p>
-                            </li>
-                            <li>
-                                <p>Cambios y devoluciones</p>
+                                <p>Politicas</p>
                             </li>
                         </ul>
                     </Col>
@@ -47,13 +44,10 @@ const Footer = () => {
                                 <h3>SERVICIO</h3>
                             </li>
                             <li>
-                                <p>Formas de pago</p>
+                                <p>Publicidad</p>
                             </li>
                             <li>
                                 <p>Compra segura</p>
-                            </li>
-                            <li>
-                                <p>Politicas de despacho</p>
                             </li>
                         </ul>
                     </Col>
@@ -67,9 +61,6 @@ const Footer = () => {
                             </li>
                             <li>
                                 <p>Trabaja con nosotros</p>
-                            </li>
-                            <li>
-                                <p>Asociados</p>
                             </li>
                         </ul>
                     </Col>

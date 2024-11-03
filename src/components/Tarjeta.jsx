@@ -59,7 +59,7 @@ const Tarjeta = ({menu , setMenu}) => {
                   {menuFiltrado.map(plato=> (
                     <Col className="d-flex" key={plato.id}>
                       <Card className="border-info text-center flex-fill">
-                          <Card.Header><Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle></Card.Header>
+                          <CardHeader><Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle></CardHeader>
                           <Ratio key={'21x9'} aspectRatio={'21x9'}>
                             <div><Card.Img variant="top" src={plato.image} style={{ height: '150px', objectFit: 'cover' }} /></div>
                           </Ratio>

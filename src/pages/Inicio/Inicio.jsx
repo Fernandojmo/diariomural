@@ -48,8 +48,8 @@ const Inicio = () => {
         
       </div>
       <div className='container'>
-        <Row className='row'>
-          <Col md={12} lg={6}>
+        <Row className='row d-flex justify-content-center align-items-center'>
+          <Col md={12} lg={6}  >
             <Ratio key={'1x1'} aspectRatio={'1x1'}>
               <Image
               className="w-100 p-4 m-2"
@@ -58,7 +58,7 @@ const Inicio = () => {
               />
             </Ratio>
           </Col>
-          <Col md={12} lg={6}>
+          <Col md={12} lg={6} className=''>
             <h2 className='text-center m-2 p-2'>
             Descripción general del diario mural.
             </h2>
@@ -74,7 +74,7 @@ const Inicio = () => {
         </Row>
       </div>
       <div className='container'>
-        <Row className='row'>
+        <Row className='row d-flex justify-content-center align-items-center'>
           <Col md={12} lg={6}>
               <h2 className='text-center m-2 p-2'>
                 Quienes somos
