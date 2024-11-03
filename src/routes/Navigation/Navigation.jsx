@@ -10,12 +10,6 @@ import logoDMC from '../../images/logodmc.png';
 const Navigation = () => {
   return (
     <div>
-        {/* <NavLink to='/inicio'>Inicio</NavLink>
-        <NavLink to='/menu'>Menu</NavLink>
-        <NavLink to='/reservas'>Reservas</NavLink>
-        <NavLink to='/nosotros'>Nosotros</NavLink>
-        <NavLink to='/contactanos'>Contactanos</NavLink> */}
-
               <>
                 {['sm'].map((expand) => (
                   <Navbar key={expand} bg="info" expand={expand}>
@@ -46,35 +40,8 @@ const Navigation = () => {
                           <Nav className="justify-content-left flex-grow-1 pe-3">
                             <Nav.Link href='/' className='text-white bg-success border-dark rounded m-1 p-2'>Inicio</Nav.Link>
                             <Nav.Link href='/cartadisp' className='text-white bg-success border-dark rounded m-1 p-2'>Actividades</Nav.Link>
-                            {/* <Nav.Link href='/reservas'>Reservas</Nav.Link>
-                            <Nav.Link href='/nosotros'>Nosotros</Nav.Link>
-                            <Nav.Link href='/contactanos'>Contactanos</Nav.Link> */}
                             <Nav.Link href='/reservas' className='text-white bg-success border-dark rounded m-1 p-2'>Publicar</Nav.Link>
-
-
-                            {/* <NavDropdown
-                              title="Dropdown"
-                              id={`offcanvasNavbarDropdown-expand-${expand}`}
-                            >
-                              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                              <NavDropdown.Item href="#action4">
-                                Another action
-                              </NavDropdown.Item>
-                              <NavDropdown.Divider />
-                              <NavDropdown.Item href="#action5">
-                                Something else here
-                              </NavDropdown.Item>
-                            </NavDropdown> */}
                           </Nav>
-                          {/* <Form className="d-flex">
-                            <Form.Control
-                              type="search"
-                              placeholder="Search"
-                              className="me-2"
-                              aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                          </Form> */}
                         </Offcanvas.Body>
                       </Navbar.Offcanvas>
                     </Container>

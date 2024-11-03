@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Ratio from 'react-bootstrap/Ratio';
 
 const Inicio = () => {
 
@@ -15,39 +16,47 @@ const Inicio = () => {
   return (
     <div>
       <div>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 vh-25"
-            src={require('./../../images/bar.jpg')}
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 mh-25"
-            src={require('./../../images/vitrina.jpg')}
-            alt="Second slide"
-            
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 mh-25"
-            src={require('./../../images/degustacion1.jpg')}
-            alt="Third slide"
-          />
-        </Carousel.Item>
-      </Carousel>
+        
+        <Ratio key={'21x9'} aspectRatio={'21x9'}>
+          <div>
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 vh-25"
+                  src={require('./../../images/bar.jpg')}
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 mh-25"
+                  src={require('./../../images/vitrina.jpg')}
+                  alt="Second slide"
+                  
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 mh-25"
+                  src={require('./../../images/degustacion1.jpg')}
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </Ratio>
+        
       </div>
       <div className='container'>
         <Row className='row'>
           <Col md={12} lg={6}>
-            <Image
-            className="w-100 p-4 m-2"
-            src={require('./../../images/salud.jpg')}
-            alt="First slide"
-            />
+            <Ratio key={'1x1'} aspectRatio={'1x1'}>
+              <Image
+              className="w-100 p-4 m-2"
+              src={require('./../../images/salud.jpg')}
+              alt="First slide"
+              />
+            </Ratio>
           </Col>
           <Col md={12} lg={6}>
             <h2 className='text-center m-2 p-2'>
@@ -76,11 +85,13 @@ const Inicio = () => {
               </p>
             </Col>
             <Col md={12} lg={6}>
-              <Image
-              className="w-100 p-4 m-2"
-              src={require('./../../images/terraza.jpg')}
-              alt="First slide"
-              />
+              <Ratio key={'1x1'} aspectRatio={'1x1'}>
+                <Image
+                className="w-100 p-4 m-2"
+                src={require('./../../images/terraza.jpg')}
+                alt="First slide"
+                />
+              </Ratio>
             </Col>
         </Row>
       </div>

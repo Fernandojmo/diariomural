@@ -38,7 +38,7 @@ const Reservas = () => {
         organiza:'',
         precio:'',
         image:'',
-        
+
 
     }
 
@@ -129,10 +129,13 @@ const Reservas = () => {
                   <Form.Label >Dirección</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
                 </Form.Group>
-                <Button type="submit" className='m-2'>Reservar</Button>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label >Descripción de Actividad</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
+                </Form.Group>
+                <Button type="submit" className='m-2'>Publicar</Button>
               </fieldset>
             </Form>
-            {/* <Tarjetareserva reservas={reserva} setReserva={setReserva}/>  */}
         </div>
     )
 }
