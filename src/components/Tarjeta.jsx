@@ -4,8 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Ratio from 'react-bootstrap/Ratio';
 // import dayjs from 'dayjs';
 import { ListGroup} from 'react-bootstrap';
+import CardHeader from 'react-bootstrap/esm/CardHeader';
 // import Cartadisp from '../pages/Menu/Cartadisp'
 
 const Tarjeta = ({menu , setMenu}) => {
@@ -28,42 +30,6 @@ const Tarjeta = ({menu , setMenu}) => {
 
   return (
     <div>
-        <style type="text/css">
-        {`
-          // #contenedorcartas{
-          //   display: flex;
-          //   flex-direction: row;
-          //   flex-wrap: wrap;
-          //   padding: 0.5rem;
-          //   justify-content: center;
-          //   background-color: blue;
-          //   max-width:95%;
-          // }
-          // #menu-display{
-          //   display: flex;
-          //   flex-direction: row;
-          //   background-color: red;
-          // }
-          // #filtros{
-          //   padding: 0.5rem;
-          //   min-width: 20%; 
-          //   background-color: yellow;
-          //   min-width: 8rem;
-          // }
-          // #filtros>ul{
-          //   list-style-type: none;
-          //   margin: 0;
-          //   padding: 0;
-            
-          // }
-          // #filtros>ul>li>p{
-          //   font-size:1rem;
-          //   padding-left:1rem;
-          // }            
-          // }
-        `}
-        </style>
-
         <div id="menu-display">
           <Row>
             <Col xs={12} sm={3} md={2}>
@@ -77,8 +43,8 @@ const Tarjeta = ({menu , setMenu}) => {
                     </ListGroup.Item>
                   ))
                 )}
-                <Button action variant="dark" onClick={() => elimCategoria()}> Eliminar Filtro</Button>
-                <Button action variant="dark" onClick={() => setMostrarFiltros(!mostrarFiltros)}> Reducir / Mostrar Filtros</Button>
+                <Button action variant="dark" className="m-1" onClick={() => elimCategoria()}> Eliminar Filtro</Button>
+                <Button action variant="dark" className="m-1" onClick={() => setMostrarFiltros(!mostrarFiltros)}> Reducir / Mostrar Filtros</Button>
                   <Button
                   variant="link"
                   onClick={() => setMostrarFiltros(!mostrarFiltros)}
@@ -93,17 +59,18 @@ const Tarjeta = ({menu , setMenu}) => {
                   {menuFiltrado.map(plato=> (
                     <Col className="d-flex" key={plato.id}>
                       <Card className="border-info text-center flex-fill">
-                          <Card.Img variant="top" src={plato.image} style={{ height: '150px', objectFit: 'cover' }} />
+                          <Card.Header><Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle></Card.Header>
+                          <Ratio key={'21x9'} aspectRatio={'21x9'}>
+                            <div><Card.Img variant="top" src={plato.image} style={{ height: '150px', objectFit: 'cover' }} /></div>
+                          </Ratio>
                           <Card.Body>
-                            <Card.Text>El {plato.fecha}</Card.Text>
-                            <Card.Text>A las {plato.hora}</Card.Text>
-                            <Card.Text>{plato.categoria}</Card.Text>
+                            <Card.Text className='text-info'>{plato.categoria}</Card.Text>
                             <Card.Title>{plato.nombre}</Card.Title>
-                            <Card.Text>{plato.organiza}</Card.Text>
                             <Card.Text>{plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
-                            <Card.Text>{plato.direccion}</Card.Text>
-                            <Button variant="primary">Ver detalles</Button>
+                            <Card.Text>En {plato.direccion}</Card.Text>
+                            <Button variant="info">Ver detalles</Button>
                           </Card.Body>
+                          <Card.Footer className="text-muted"><Card.Text>El {plato.fecha} A las {plato.hora}</Card.Text></Card.Footer>
                       </Card>
                     </Col>
                     ))}
