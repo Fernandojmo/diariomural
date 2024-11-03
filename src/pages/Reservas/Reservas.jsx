@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../config/Firebase';
 import { collection, getDocs, addDoc} from 'firebase/firestore';
+// import {Text} from 'react-bootstrap/Text';
 // import Tarjetareserva from  '../../components/Tarjetareserva'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -134,6 +135,7 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
                 </Form.Group>
                 <Button type="submit" className='m-2'>Publicar</Button>
+                {/* <Text>Tu publicacion sera revisada y aprobada en un rango entre 12 y 24 horas</Text> */}
               </fieldset>
             </Form>
         </div>

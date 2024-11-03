@@ -14,12 +14,12 @@ const Navigation = () => {
                 {['sm'].map((expand) => (
                   <Navbar key={expand} bg="info" expand={expand}>
                     <Container fluid>
-                      <Navbar.Brand href="#home">
+                      <Navbar.Brand className='d-flex justify-content-center align-items-center' href="#homev">
                         <img
                           alt="Logo"
                           src={logoDMC}
-                          width="30"
-                          height="30"
+                          width="40"
+                          height="40"
                           className="d-inline-block align-top"
                         />{' '}
                         Diario Mural Curicó
