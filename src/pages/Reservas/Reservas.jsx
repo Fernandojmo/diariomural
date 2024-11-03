@@ -104,7 +104,7 @@ const Reservas = () => {
                       <div className="row">
                           <div className="col-md-4 m-2">
                               <Form.Group controlId="dob">
-                                  <Form.Label>Fecha Actividad</Form.Label>
+                                  <Form.Label>Fecha Actividad o termino de concurso</Form.Label>
                                   <Form.Control onChange={catchInputs} value={user.fecha} required type="date" name="fecha" placeholder="Date" />
                               </Form.Group>
                           </div>
@@ -131,11 +131,12 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label >Descripción de Actividad</Form.Label>
+                  <Form.Label >Descripción de Actividad o bases (concurso)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
                 </Form.Group>
                 <Button type="submit" className='m-2'>Publicar</Button>
-                {/* <Text>Tu publicacion sera revisada y aprobada en un rango entre 12 y 24 horas</Text> */}
+                <br/>
+                <text className='d-flex justify-content-center align-items-center'>Tu publicacion sera revisada y aprobada en un rango entre 12 y 24 horas</text>
               </fieldset>
             </Form>
         </div>
