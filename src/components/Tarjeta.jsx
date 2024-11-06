@@ -38,13 +38,13 @@ const Tarjeta = ({menu , setMenu}) => {
                 <ListGroup>
                 {!mostrarFiltros && (
                   menu.map(plato=>(
-                    <ListGroup.Item onClick={() => filtrarPorCategoria(plato.categoria)} action variant="info" key={plato.id}>
+                    <ListGroup.Item onClick={() => filtrarPorCategoria(plato.categoria)}  variant="info" key={plato.id}>
                       <Button variant=''>{plato.categoria}</Button>
                     </ListGroup.Item>
                   ))
                 )}
-                <Button action variant="dark" className="m-1" onClick={() => elimCategoria()}> Eliminar Filtro</Button>
-                <Button action variant="dark" className="m-1" onClick={() => setMostrarFiltros(!mostrarFiltros)}> Reducir / Mostrar Filtros</Button>
+                <Button  variant="dark" className="m-1" onClick={() => elimCategoria()}> Eliminar Filtro</Button>
+                <Button  variant="dark" className="m-1" onClick={() => setMostrarFiltros(!mostrarFiltros)}> Reducir / Mostrar Filtros</Button>
                   <Button
                   variant="link"
                   onClick={() => setMostrarFiltros(!mostrarFiltros)}

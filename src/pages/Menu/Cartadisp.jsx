@@ -19,7 +19,8 @@ const Cartadisp = () => {
                 data.id=doc.id
                 return data
             })
-            setMenu(docs);
+            const approvedItems = docs.filter((item)=> item.aprovado===1);
+            setMenu(approvedItems);
             }catch(error){
                 console.log(error)
     
@@ -27,7 +28,7 @@ const Cartadisp = () => {
         }
         getCard()
         },[])
-        console.log(menu);
+        // console.log(menu);
     return (
         <div>
             <Tarjeta menu={menu} setMenu={setMenu}/> 

@@ -14,12 +14,13 @@ const Reservas = () => {
         fecha: '',
         hora: '',
         nombre: '',
-        categoria: '',
+        categoria: 'Artes y diseño',
         organiza: '',
         precio: '',
         image: '',
         direccion: '',
-        descripcion: ''
+        descripcion: '',
+        aprovado: 0
     };
 
     const [user, setUser] = useState(valoresIniciales);
@@ -44,10 +45,12 @@ const Reservas = () => {
     }, []);
 
     const catchInputs = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, checked } = e.target;
+        const newValue = type === "checkbox" ? (checked ? 1 : 0) : value;
+        console.log(user)
         setUser({
             ...user,
-            [name]: value
+            [name]: newValue
         });
     };
 
@@ -146,7 +149,7 @@ const Reservas = () => {
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
                   <Form.Label>Descripción de Actividad o bases (concurso)</Form.Label>
-                  <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
+                  <Form.Control onChange={catchInputs} checked={user.aprovado === 1} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
                 </Form.Group>
                 <Button type="submit" className='m-2'>Publicar</Button>
                 <br />
