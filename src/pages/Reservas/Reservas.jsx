@@ -20,7 +20,10 @@ const Reservas = () => {
         image: '',
         direccion: '',
         descripcion: '',
-        aprovado: 0
+        aprovado: 0,
+        persona: '',
+        telefono: '',
+        correo: ''
     };
 
     const [user, setUser] = useState(valoresIniciales);
@@ -79,7 +82,9 @@ const Reservas = () => {
 
         // Subir imagen a Firebase Storage si se ha seleccionado un archivo válido
         if (imageFile) {
-            const imageRef = ref(storage, `images/${imageFile.name}`);
+          // Generar un nombre de archivo único utilizando Date.now()
+            const uniqueImageName = `images/${Date.now()}-${imageFile.name}`;
+            const imageRef = ref(storage, uniqueImageName);
             await uploadBytes(imageRef, imageFile);
             imageUrl = await getDownloadURL(imageRef); // Obtener la URL de descarga de la imagen
         }
@@ -127,7 +132,7 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.organiza} required name='organiza' placeholder="Institucion que organiza" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Precio</Form.Label>
+                  <Form.Label>Valor</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.precio} required name='precio' type="number" placeholder="Precio" />
                 </Form.Group>
                 <Form.Group className="mb-3">
@@ -135,21 +140,51 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.fecha} required type="date" name="fecha" placeholder="Date" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Hora de la reserva</Form.Label>
+                  <Form.Label>Hora de la actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.hora} required type="time" name="hora" placeholder="time" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Fotografía</Form.Label>
+                  <Form.Label>Afiche o imagen</Form.Label>
                   <Form.Control type="file" onChange={handleImageChange} required />
                   {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Dirección</Form.Label>
+                  <Form.Label>Dirección de la actividad (Si online indicar ONLINE)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
                   <Form.Label>Descripción de Actividad o bases (concurso)</Form.Label>
-                  <Form.Control onChange={catchInputs} checked={user.aprovado === 1} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
+                  <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label>Responsable directo </Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.persona} required name='persona' placeholder="Nombre de quien publica" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label>Telefono responsable directo</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.telefono} required name='telefono' placeholder="9 12345678" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label>Correo responsable directo</Form.Label>
+                  <Form.Control onChange={catchInputs} type='email' value={user.correo} required name='correo' placeholder="Correo@gmail.cl" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                  <Form.Label>Link redes sociales</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.link} required name='link' placeholder="https://instagram.com/actividad" />
+                </Form.Group>
+                <Form.Group className="mb-3 m-2">
+                <Form.Label htmlFor="disabledSelect">Edad mínima recomendada</Form.Label>
+                <Form.Select onChange={catchInputs} value={user.edad} required name='edad' id="disabledSelect">
+                    <option>0+ años</option>
+                    <option>5+ años</option>
+                    <option>10+ años</option>
+                    <option>15+ años</option>
+                    <option>18+ años</option>
+                    <option>24+ años</option>
+                    <option>35+ años</option>
+                    <option>60+ años</option>
+                    <option>Todas las edades</option>
+                  </Form.Select>
                 </Form.Group>
                 <Button type="submit" className='m-2'>Publicar</Button>
                 <br />

@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { db } from '../../config/Firebase';
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import Tarjetarevision from '../../components/Tarjetarevision';
+import { storage } from '../../config/Firebase';
+import { ref, deleteObject } from 'firebase/storage';
+
 
 const Revisar = () => {
     const [menu, setMenu] = useState([]);
@@ -39,11 +42,34 @@ const Revisar = () => {
             console.log("Error al actualizar el documento:", error);
         }
     };
+    const handleDelete = async (id) => {
+        try {
+            // Encuentra el elemento a eliminar para acceder a la URL de la imagen
+            const itemToDelete = menu.find(plato => plato.id === id);
+            const imageUrl = itemToDelete?.image;  // Asume que la URL de la imagen se guarda en el campo 'image'
+            
+            // Eliminar la imagen de Firebase Storage si existe
+            if (imageUrl) {
+                const imageRef = ref(storage, imageUrl);
+                await deleteObject(imageRef);
+            }
+
+            // Referencia al documento en Firestore
+            const docRef = doc(db, 'menu', id);
+            await deleteDoc(docRef);
+
+            // Actualizar el estado local eliminando la tarjeta
+            const updatedMenu = menu.filter(plato => plato.id !== id);
+            setMenu(updatedMenu);
+        } catch (error) {
+            console.error("Error al eliminar el documento o la imagen:", error);
+        }
+    };
 
     return (
         <div>
             {/* Pasamos la función handleUpdate al componente */}
-            <Tarjetarevision menu={menu} setMenu={setMenu} handleUpdate={handleUpdate} /> 
+            <Tarjetarevision menu={menu} setMenu={setMenu} handleUpdate={handleUpdate} handleDelete={handleDelete}/> 
         </div>
     );
 };
