@@ -11,10 +11,10 @@ const Allroutes = () => {
     <Routes>
         <Route path='/' element = {<Layout/>}>
             <Route path='/' element = {<Inicio/>}/>
-            <Route path='/reservas' element = {<Reservas/>}/>
+            <Route path='/publicar' element = {<Reservas/>}/>
             <Route path='/nosotros' element = {<Nosotros/>}/>
             <Route path='/contactanos' element = {<Contactanos/>}/>
-            <Route path='/cartadisp' element = {<Cartadisp/>}/>
+            <Route path='/actividades' element = {<Cartadisp/>}/>
             <Route path='/revlamafe' element = {<Revisar/>}/>
         </Route>
     </Routes>

@@ -39,8 +39,8 @@ const Navigation = () => {
                         <Offcanvas.Body>
                           <Nav className="justify-content-left flex-grow-1 pe-3">
                             <Nav.Link href='/' className='text-white bg-success border-dark rounded m-1 p-2'>Inicio</Nav.Link>
-                            <Nav.Link href='/cartadisp' className='text-white bg-success border-dark rounded m-1 p-2'>Actividades</Nav.Link>
-                            <Nav.Link href='/reservas' className='text-white bg-success border-dark rounded m-1 p-2'>Publicar</Nav.Link>
+                            <Nav.Link href='/actividades' className='text-white bg-success border-dark rounded m-1 p-2'>Actividades</Nav.Link>
+                            <Nav.Link href='/publicar' className='text-white bg-success border-dark rounded m-1 p-2'>Publicar</Nav.Link>
                             {/* <Nav.Link href='/revisar' className='text-white bg-success border-dark rounded m-1 p-2'>Revisar</Nav.Link> */}
                           </Nav>
                         </Offcanvas.Body>
