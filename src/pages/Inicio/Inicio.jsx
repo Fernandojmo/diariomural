@@ -15,21 +15,21 @@ const Inicio = () => {
 
   return (
     <div>
-      <div>
-        
-        <Ratio key={'21x9'} aspectRatio={'21x9'}>
+      <div className='mb-2'>
+        <Ratio className="container" key={'16x9'} aspectRatio={'16x9'}>
           <div>
             <Carousel activeIndex={index} onSelect={handleSelect}>
+              
               <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/bar.jpg')}
+                  src={require('./../../images/ratioimg.png')}
                   alt="First slide"
                 />
               </Carousel.Item>
-              <Carousel.Item>
+              {/* <Carousel.Item>
                 <img
-                  className="d-block w-100 mh-25"
+                  className="d-block w-100 vh-25"
                   src={require('./../../images/vitrina.jpg')}
                   alt="Second slide"
                   
@@ -37,11 +37,12 @@ const Inicio = () => {
               </Carousel.Item>
               <Carousel.Item>
                 <img
-                  className="d-block w-100 mh-25"
+                  className="d-block w-100 vh-25"
                   src={require('./../../images/degustacion1.jpg')}
                   alt="Third slide"
                 />
-              </Carousel.Item>
+              </Carousel.Item> */}
+              
             </Carousel>
           </div>
         </Ratio>

@@ -10,11 +10,11 @@ const Allroutes = () => {
   return (
     <Routes>
         <Route path='/' element = {<Layout/>}>
-            <Route path='/' element = {<Inicio/>}/>
+            <Route path='/inicio' element = {<Inicio/>}/>
             <Route path='/publicar' element = {<Reservas/>}/>
             <Route path='/nosotros' element = {<Nosotros/>}/>
             <Route path='/contactanos' element = {<Contactanos/>}/>
-            <Route path='/actividades' element = {<Cartadisp/>}/>
+            <Route path='/' element = {<Cartadisp/>}/>
             <Route path='/revlamafe' element = {<Revisar/>}/>
         </Route>
     </Routes>

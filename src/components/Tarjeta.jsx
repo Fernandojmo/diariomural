@@ -1,32 +1,31 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import Ratio from 'react-bootstrap/Ratio';
-// import dayjs from 'dayjs';
-import { ListGroup} from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
-// import Cartadisp from '../pages/Menu/Cartadisp'
 
-const Tarjeta = ({menu , setMenu}) => {
-
+const Tarjeta = ({ menu, setMenu }) => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [mostrarFiltros, setMostrarFiltros] = useState(true);
-  const handleLink = (url) =>{
+  const [ordenFecha, setOrdenFecha] = useState('asc'); // Estado para el orden de fecha
+
+  const handleLink = (url) => {
     if (url) {
-        window.open(url, '_blank'); // Abre el enlace en una nueva pestaña
+      window.open(url, '_blank'); // Abre el enlace en una nueva pestaña
     } else {
-        console.error("URL no válida");
+      console.error("URL no válida");
     }
-}
-  // Función para manejar el filtro por categoría
+  };
+
   const filtrarPorCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
   };
+
   const elimCategoria = () => {
-    setCategoriaSeleccionada();
+    setCategoriaSeleccionada(null);
   };
 
   // Filtramos el menú según la categoría seleccionada
@@ -34,67 +33,78 @@ const Tarjeta = ({menu , setMenu}) => {
     ? menu.filter((plato) => plato.categoria === categoriaSeleccionada)
     : menu;
 
+  // Ordena las tarjetas por fecha según el valor de 'ordenFecha'
+  const menuOrdenado = [...menuFiltrado].sort((a, b) => {
+    const fechaA = new Date(a.fecha);
+    const fechaB = new Date(b.fecha);
+    return ordenFecha === 'asc' ? fechaA - fechaB : fechaB - fechaA;
+  });
+
   return (
     <div>
-        <div id="menu-display">
-          <Row>
-            <Col xs={12} sm={3} md={2}>
-              <div id="filtros" className='m-2 bg-light border border-info rounded p-3'>
-                <h4 >Filtra Aqui</h4>
-                <ListGroup>
+      <div id="menu-display" className='bg-secondary'>
+        <Row>
+          <Col xs={12} sm={3} md={2}>
+            <div id="filtros" className='m-2 bg-light rounded p-3'>
+              <h4>Filtra Aqui</h4>
+              <ListGroup>
                 {!mostrarFiltros && (
-                  menu.map(plato=>(
-                    <ListGroup.Item onClick={() => filtrarPorCategoria(plato.categoria)}  variant="info" key={plato.id}>
+                  menu.map(plato => (
+                    <ListGroup.Item
+                      onClick={() => filtrarPorCategoria(plato.categoria)}
+                      variant="info"
+                      key={plato.id}
+                    >
                       <Button variant=''>{plato.categoria}</Button>
                     </ListGroup.Item>
                   ))
                 )}
-                <Button  variant="dark" className="m-1" onClick={() => elimCategoria()}> Eliminar Filtro</Button>
-                <Button  variant="dark" className="m-1" onClick={() => setMostrarFiltros(!mostrarFiltros)}> Reducir / Mostrar Filtros</Button>
-                  <Button
-                  variant="link"
-                  onClick={() => setMostrarFiltros(!mostrarFiltros)}
-                  style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#007bff' }}
-                ></Button>
+                <Button variant="dark" className="m-1" onClick={() => setMostrarFiltros(!mostrarFiltros)}>Ver / Ocultar Filtros</Button>
+                <Button variant="dark" className="m-1" onClick={() => elimCategoria()}>Borrar Filtro</Button>
+                {/* Botón para cambiar el orden de las fechas */}
+                <Button variant="info" className="m-1" onClick={() => setOrdenFecha(ordenFecha === 'asc' ? 'desc' : 'asc')}>Ordenar por fecha</Button>
               </ListGroup>
-              </div>
-            </Col>
-            <Col xs={12} sm={9} md={10}>
-              <div id="contenedorcartas" className='m-2 p-2 border border-info rounded'>
-                <Row xs={1} sm={1} md={1} lg={2} xl={2} xxl={3} className="g-4">
-                  {menuFiltrado.map(plato=> (
-                    <Col className="d-flex" key={plato.id}>
-                      <Card className="border-info text-center flex-fill">
-                          <CardHeader><Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle></CardHeader>
-                          <Ratio key={'21x9'} aspectRatio={'21x9'}>
-                            <div><Card.Img variant="top" src={plato.image} style={{ height: '150px', objectFit: 'cover' }} /></div>
-                          </Ratio>
-                          <Card.Body>
-                            <Card.Text className='text-info'>{plato.categoria}</Card.Text>
-                            <Card.Title>{plato.nombre}</Card.Title>
-                            <Card.Text>{plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
-                            <Card.Text>En {plato.direccion}</Card.Text>
-                            <Card.Text>Edad mínima: {plato.edad}</Card.Text>
-                            <Card.Text>{plato.descripcion}</Card.Text>
-                            <Button variant='link' onClick={() => handleLink(plato.link)}>Link publicación redes</Button>
-                            {/* <Button variant="info">Ver detalles</Button> */}
-                          </Card.Body>
-                          <Card.Footer className="text-muted"><Card.Text>El {plato.fecha} a las {plato.hora}</Card.Text></Card.Footer>
-                      </Card>
-                    </Col>
-                    ))}
-                </Row>
-              </div>
-            </Col>
-          </Row>
-        </div>
-
-        
+            </div>
+          </Col>
+          <Col xs={12} sm={9} md={10}>
+            <div id="contenedorcartas" className='m-2 p-2  bg-secondary  rounded'>
+              <Row xs={1} sm={1} md={1} lg={2} xl={2} xxl={3} className="g-4">
+                {menuOrdenado.map(plato => (
+                  <Col className="d-flex" key={plato.id}>
+                    <Card className=" mb-2 text-center flex-fill">
+                      <CardHeader>
+                        <Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle>
+                      </CardHeader>
+                      <Ratio key={'1x1'} aspectRatio={'1x1'}>
+                        <Card.Img className="p-2" variant="top" src={plato.image} style={{ height: '350px', objectFit: 'cover' }} />
+                      </Ratio>
+                      <Card.Body>
+                        <Card.Text >{plato.categoria}</Card.Text>
+                        <Card.Title >{plato.nombre.toUpperCase()}</Card.Title>
+                        <Card.Text >{plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
+                        <Card.Text >En {plato.direccion}</Card.Text>
+                        <Card.Text >Edad mínima: {plato.edad}</Card.Text>
+                        <Card.Text >{plato.descripcion}</Card.Text>
+                        <Button variant='link'  onClick={() => handleLink(plato.link)}>Link publicación redes</Button>
+                        {/* <br></br><Button variant="info">Ver detalles</Button> */}
+                      </Card.Body>
+                      <Card.Footer>
+                        <Card.Title>EL {plato.fecha} A LAS {plato.hora}</Card.Title>
+                      </Card.Footer>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </Col>
+        </Row>
       </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Tarjeta
+export default Tarjeta;
+
 
 
 
