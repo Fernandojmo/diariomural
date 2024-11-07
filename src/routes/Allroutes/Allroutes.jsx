@@ -15,7 +15,7 @@ const Allroutes = () => {
             <Route path='/nosotros' element = {<Nosotros/>}/>
             <Route path='/contactanos' element = {<Contactanos/>}/>
             <Route path='/cartadisp' element = {<Cartadisp/>}/>
-            <Route path='/revisar' element = {<Revisar/>}/>
+            <Route path='/revlamafe' element = {<Revisar/>}/>
         </Route>
     </Routes>
   )

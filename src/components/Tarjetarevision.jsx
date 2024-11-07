@@ -10,9 +10,13 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
 
     // Función para manejar el cambio del switch "aprovado"
     
-    const handleSwitchChange = (id, currentValue) => {
-        const updatedValue = currentValue === 1 ? 0 : 1; // Alterna entre 1 y 0
-        handleUpdate(id, { aprovado: updatedValue });
+    const handleApprove = (id, currentValue) => {
+        const confirmAprove = window.confirm("¿Estás seguro de que deseas eliminar este elemento?");
+        if (confirmAprove){
+            const updatedValue = currentValue === 1 ? 0 : 1; // Alterna entre 1 y 0
+            handleUpdate(id, { aprovado: updatedValue });  
+        }
+       
     };
 
     const handleDeleteCard = (id) => {
@@ -22,6 +26,7 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
             handleDelete(id);
         }
     };
+
 
     const handleLink = (url) =>{
         if (url) {
@@ -59,9 +64,9 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
                                                 <Card.Text>Fono: {plato.telefono}</Card.Text>
                                                 <Card.Text>Correo: {plato.correo}</Card.Text>
                                                 <Card.Text>Edad mínima: {plato.edad}</Card.Text>
-                                                <Button variant='link' onClick={() => handleLink(plato.link)}>Link publicacion redes</Button>
-                                                <Card.Text>Descripcion: {plato.descripcion}</Card.Text>
-                                                <Button variant="success" className="m-2" onClick={() => handleSwitchChange(plato.id, plato.aprovado)}>Aprobar</Button>
+                                                <Button variant='link' onClick={() => handleLink(plato.link)}>Link publicación redes</Button>
+                                                <Card.Text>Descripción: {plato.descripcion}</Card.Text>
+                                                <Button variant="success" className="m-2" onClick={() => handleApprove(plato.id, plato.aprovado)}>Aprobar</Button>
                                                 <Button variant="warning" className="m-2" onClick={() => handleDeleteCard(plato.id)}>Eliminar</Button>
                                             </Card.Body>
                                             <Card.Footer className="text-muted">

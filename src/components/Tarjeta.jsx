@@ -14,7 +14,13 @@ const Tarjeta = ({menu , setMenu}) => {
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [mostrarFiltros, setMostrarFiltros] = useState(true);
-  
+  const handleLink = (url) =>{
+    if (url) {
+        window.open(url, '_blank'); // Abre el enlace en una nueva pestaña
+    } else {
+        console.error("URL no válida");
+    }
+}
   // Función para manejar el filtro por categoría
   const filtrarPorCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
@@ -68,9 +74,12 @@ const Tarjeta = ({menu , setMenu}) => {
                             <Card.Title>{plato.nombre}</Card.Title>
                             <Card.Text>{plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
                             <Card.Text>En {plato.direccion}</Card.Text>
-                            <Button variant="info">Ver detalles</Button>
+                            <Card.Text>Edad mínima: {plato.edad}</Card.Text>
+                            <Card.Text>{plato.descripcion}</Card.Text>
+                            <Button variant='link' onClick={() => handleLink(plato.link)}>Link publicación redes</Button>
+                            {/* <Button variant="info">Ver detalles</Button> */}
                           </Card.Body>
-                          <Card.Footer className="text-muted"><Card.Text>El {plato.fecha} A las {plato.hora}</Card.Text></Card.Footer>
+                          <Card.Footer className="text-muted"><Card.Text>El {plato.fecha} a las {plato.hora}</Card.Text></Card.Footer>
                       </Card>
                     </Col>
                     ))}

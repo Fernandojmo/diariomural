@@ -71,9 +71,18 @@ const Reservas = () => {
             }
         }
     };
+    // const handleSubmit = () =>{
+    //   const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
+    //   if (confirmSubmit){
 
+    //   }
+    // }
     const reservarMesa = async (e) => {
         e.preventDefault();
+        const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
+        if (!confirmSubmit){
+            return;
+        }
                 // Evitar envío si no hay un archivo o si hay un mensaje de error
         if (!imageFile || errorMessage) {
           return; // Salir de la función sin enviar el formulario
@@ -113,7 +122,7 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label htmlFor="disabledSelect">Categoria</Form.Label>
+                  <Form.Label htmlFor="disabledSelect">Categoría</Form.Label>
                   <Form.Select onChange={catchInputs} value={user.categoria} required name='categoria' id="disabledSelect">
                     <option>Artes y diseño</option>
                     <option>Eventos, Festivales y Carrete</option>
@@ -128,7 +137,7 @@ const Reservas = () => {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Institucion que organiza</Form.Label>
+                  <Form.Label>Institución que organiza</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.organiza} required name='organiza' placeholder="Institucion que organiza" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
@@ -136,7 +145,7 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.precio} required name='precio' type="number" placeholder="Precio" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Fecha Actividad o termino de concurso</Form.Label>
+                  <Form.Label>Fecha Actividad o término de concurso</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.fecha} required type="date" name="fecha" placeholder="Date" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
@@ -149,11 +158,11 @@ const Reservas = () => {
                   {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Dirección de la actividad (Si online indicar ONLINE)</Form.Label>
+                  <Form.Label>Dirección de la actividad (Si es online indicar ONLINE)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Descripción de Actividad o bases (concurso)</Form.Label>
+                  <Form.Label>Descripción de actividad o bases (concurso)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
@@ -161,7 +170,7 @@ const Reservas = () => {
                   <Form.Control onChange={catchInputs} value={user.persona} required name='persona' placeholder="Nombre de quien publica" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
-                  <Form.Label>Telefono responsable directo</Form.Label>
+                  <Form.Label>Teléfono responsable directo</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.telefono} required name='telefono' placeholder="9 12345678" />
                 </Form.Group>
                 <Form.Group className="mb-3 m-2">
