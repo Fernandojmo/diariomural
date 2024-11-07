@@ -2,8 +2,16 @@ import React from 'react'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 const Footer = () => {
+
+    const handleInstagram = () => {
+        console.log("a")
+        const url = "https://www.instagram.com"
+        window.open(url, '_blank')
+    };
+
   return (
     <div>
         <style type="text/css">
@@ -57,13 +65,28 @@ const Footer = () => {
                                 <h3>Contacto</h3>
                             </li>
                             <li>
-                                <p>Quienes somos</p>
+                                <Button
+                                    href='/inicio'
+                                    variant='link'
+                                    style={{ textDecoration: 'none', color: 'white' }}    
+                                    >Quienes somos
+                                </Button>
                             </li>
                             <li>
-                                <p>Contactanos</p>
+                            <Button
+                                    href='/inicio'
+                                    variant='link'
+                                    style={{ textDecoration: 'none', color: 'white' }}    
+                                    >Contactanos
+                            </Button>
                             </li>
                             <li>
-                                <p>Instagram</p>
+                                <Button
+                                    onClick={() => handleInstagram()}
+                                    variant='link'
+                                    style={{ textDecoration: 'none', color: 'white' }}    
+                                    >Instagram
+                                </Button>
                             </li>
                         </ul>
                     </Col>

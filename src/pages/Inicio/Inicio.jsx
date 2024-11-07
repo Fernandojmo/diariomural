@@ -27,15 +27,15 @@ const Inicio = () => {
                   alt="First slide"
                 />
               </Carousel.Item>
-              {/* <Carousel.Item>
+              <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/vitrina.jpg')}
+                  src={require('./../../images/fotopompeii.png')}
                   alt="Second slide"
                   
                 />
               </Carousel.Item>
-              <Carousel.Item>
+              {/* <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
                   src={require('./../../images/degustacion1.jpg')}
@@ -95,6 +95,41 @@ const Inicio = () => {
               </Ratio>
             </Col>
         </Row>
+            <Row >
+              <Col>
+                <h1 className='text-center m-2 p-2'>Auspiciado por</h1>
+              </Col>
+            </Row>
+            <Row xs={2} sm={2} md={2} lg={4} xl={4} xxl={4}>
+              <Col >
+                <Image
+                  className="w-100 p-4"
+                  src={require('./../../images/pompeii.png')}
+                  alt="First slide"
+                />
+              </Col>
+              <Col >
+                <Image
+                  className="w-100 p-4"
+                  src={require('./../../images/nagata.png')}
+                  alt="First slide"
+                />
+              </Col>
+              <Col>
+                <Image
+                  className="w-100 p-4"
+                  src={require('./../../images/maca.png')}
+                  alt="First slide"
+                />
+              </Col>
+              <Col>
+                <Image
+                  className="w-100 p-4"
+                  src={require('./../../images/corpo.png')}
+                  alt="First slide"
+                />
+              </Col>
+            </Row>
       </div>
     </div>
 
