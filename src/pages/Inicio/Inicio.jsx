@@ -12,6 +12,16 @@ const Inicio = () => {
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };
+    const handlePhoto = (n) => {
+      const url = 
+        n === 1 ? "https://www.instagram.com/pompeii.curico" :
+        n === 2 ? "https://www.nagata.cl" :
+        n === 3 ? "https://wa.me/56992509905" :
+        n === 4 ? "https://www.culturalcurico.cl" :
+        null;
+    
+      url ? window.open(url, '_blank') : console.error("URL no válida");
+    };
 
   return (
     <div>
@@ -30,7 +40,7 @@ const Inicio = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/fotopompeii.png')}
+                  src={require('./../../images/fotopompeii.jpeg')}
                   alt="Second slide"
                   
                 />
@@ -103,6 +113,7 @@ const Inicio = () => {
             <Row xs={2} sm={2} md={2} lg={4} xl={4} xxl={4}>
               <Col >
                 <Image
+                  onClick={() => handlePhoto(1)}
                   className="w-100 p-4"
                   src={require('./../../images/pompeii.png')}
                   alt="First slide"
@@ -110,6 +121,7 @@ const Inicio = () => {
               </Col>
               <Col >
                 <Image
+                  onClick={() => handlePhoto(2)}
                   className="w-100 p-4"
                   src={require('./../../images/nagata.png')}
                   alt="First slide"
@@ -117,6 +129,7 @@ const Inicio = () => {
               </Col>
               <Col>
                 <Image
+                  onClick={() => handlePhoto(3)}
                   className="w-100 p-4"
                   src={require('./../../images/maca.png')}
                   alt="First slide"
@@ -124,6 +137,7 @@ const Inicio = () => {
               </Col>
               <Col>
                 <Image
+                  onClick={() => handlePhoto(4)}
                   className="w-100 p-4"
                   src={require('./../../images/corpo.png')}
                   alt="First slide"

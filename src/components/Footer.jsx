@@ -32,7 +32,7 @@ const Footer = () => {
         </div> */}
         <div className='d-flex justify-content-center bg-black p-4 text-center text-white'>
             <Container>
-                <Row>
+                <Row xs={1} sm={1} md={1}>
                     {/* <Col xs={12} sm={6} md={4}>
                         <ul className='m-4 list-unstyled'>
                             <li>
@@ -59,7 +59,7 @@ const Footer = () => {
                             </li>
                         </ul>
                     </Col> */}
-                    <Col xs={12} sm={12} md={4}>
+                    <Col >
                         <ul className='m-4 list-unstyled'>
                             <li>
                                 <h3>Contacto</h3>
