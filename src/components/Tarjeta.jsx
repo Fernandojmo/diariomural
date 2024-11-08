@@ -42,7 +42,7 @@ const Tarjeta = ({ menu, setMenu }) => {
 
   return (
     <div>
-      <div id="menu-display" className='bg-secondary'>
+      <div id="menu-display" className='bg-info'>
         <Row>
           <Col xs={12} sm={3} md={2}>
             <div id="filtros" className='m-2 bg-light rounded p-3'>
@@ -67,7 +67,7 @@ const Tarjeta = ({ menu, setMenu }) => {
             </div>
           </Col>
           <Col xs={12} sm={9} md={10}>
-            <div id="contenedorcartas" className='m-2 p-2  bg-secondary  rounded'>
+            <div id="contenedorcartas" className='m-2 p-2  bg-info  rounded'>
               <Row xs={1} sm={1} md={1} lg={2} xl={2} xxl={3} className="g-4">
                 {menuOrdenado.map(plato => (
                   <Col className="d-flex" key={plato.id}>

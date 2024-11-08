@@ -24,7 +24,7 @@ const Inicio = () => {
     };
 
   return (
-    <div>
+    <div className='p-4'>
       <div className='mb-2'>
         <Ratio className="container" key={'16x9'} aspectRatio={'16x9'}>
           <div>
@@ -33,30 +33,35 @@ const Inicio = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/ratioimg.png')}
-                  alt="First slide"
+                  src={require('./../../images/afcorpo.jpeg')}
+                  alt="corporacion cultural de curico"
                 />
               </Carousel.Item>
               <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/fotopompeii.jpeg')}
-                  alt="Second slide"
+                  src={require('./../../images/afpompeii.jpeg')}
+                  alt="pompeii pasteleria"
                   
                 />
               </Carousel.Item>
-              {/* <Carousel.Item>
+              <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/degustacion1.jpg')}
-                  alt="Third slide"
+                  src={require('./../../images/afmaca.jpeg')}
+                  alt="terapia gestalt curico"
                 />
-              </Carousel.Item> */}
-              
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 vh-25"
+                  src={require('./../../images/afnagata.jpeg')}
+                  alt="nagata juegos"
+                />
+              </Carousel.Item>
             </Carousel>
           </div>
         </Ratio>
-        
       </div>
       <div className='container'>
         <Row className='row d-flex justify-content-center align-items-center'>
@@ -64,15 +69,15 @@ const Inicio = () => {
             <Ratio key={'1x1'} aspectRatio={'1x1'}>
               <Image
               className="w-100 p-4 m-2"
-              src={require('./../../images/salud.jpg')}
-              alt="First slide"
+              src={require('./../../images/bicis.jpg')}
+              alt="ciclismo en el bosque"
               />
             </Ratio>
           </Col>
           <Col md={12} lg={6} className=''>
-            <h2 className='text-center m-2 p-2'>
+            <h1 className='text-center m-2 p-2'>
             Descripción general del diario mural.
-            </h2>
+            </h1>
 
             <p className='text-center m-2 p-2'>
               En un mar de personas con banderas en mano, cada uno pretende visibilizar la propia levantándola por sobre las demás, sin mucho éxito debido a que se pierden en la masa.
@@ -87,9 +92,9 @@ const Inicio = () => {
       <div className='container'>
         <Row className='row d-flex justify-content-center align-items-center'>
           <Col md={12} lg={6}>
-              <h2 className='text-center m-2 p-2'>
+              <h1 className='text-center m-2 p-2'>
                 Quienes somos
-              </h2>
+              </h1>
               <p className='text-center m-2 p-2'>
                 Somos 3 vecinos de Curicó y nos preocupa mucho la falta de participación ciudadana en la oferta cultural local y la generación de identidad local. A nuestro parecer, algunos de los problemas a afrontar hoy son la falta de motivación en la ciudadanía y la falta de una cartelera de actividades accesible y unificada.
                 Somos personas de entre 30 y 42 años, trabajamos en nuestra ciudad y nos propusimos desarrollar una solución a estas cuestiones que nos preocupan y motivan mucho. Poseemos las ideas y las habilidades necesarias para dar luz a este proyecto.
@@ -99,8 +104,8 @@ const Inicio = () => {
               <Ratio key={'1x1'} aspectRatio={'1x1'}>
                 <Image
                 className="w-100 p-4 m-2"
-                src={require('./../../images/terraza.jpg')}
-                alt="First slide"
+                src='https://cdn.pixabay.com/photo/2024/02/12/17/49/theater-8569119_1280.jpg'
+                alt="Teatro curico"
                 />
               </Ratio>
             </Col>
@@ -116,7 +121,7 @@ const Inicio = () => {
                   onClick={() => handlePhoto(1)}
                   className="w-100 p-4"
                   src={require('./../../images/pompeii.png')}
-                  alt="First slide"
+                  alt="pasteleria pompeii curico"
                 />
               </Col>
               <Col >
@@ -124,15 +129,15 @@ const Inicio = () => {
                   onClick={() => handlePhoto(2)}
                   className="w-100 p-4"
                   src={require('./../../images/nagata.png')}
-                  alt="First slide"
+                  alt="juegos de mesa nagata"
                 />
               </Col>
               <Col>
                 <Image
                   onClick={() => handlePhoto(3)}
                   className="w-100 p-4"
-                  src={require('./../../images/maca.png')}
-                  alt="First slide"
+                  src={require('./../../images/maca2.png')}
+                  alt="terapia gestal curico"
                 />
               </Col>
               <Col>
@@ -140,7 +145,7 @@ const Inicio = () => {
                   onClick={() => handlePhoto(4)}
                   className="w-100 p-4"
                   src={require('./../../images/corpo.png')}
-                  alt="First slide"
+                  alt="corporacion cultural de curico"
                 />
               </Col>
             </Row>
