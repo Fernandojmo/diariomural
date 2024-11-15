@@ -46,7 +46,7 @@ const Tarjeta = ({ menu, setMenu }) => {
         <Row>
           <Col xs={12} sm={3} md={2}>
             <div id="filtros" className='m-2 bg-light rounded p-3'>
-              <h4>Filtra Aqui</h4>
+              <h4>Filtra Aquí</h4>
               <ListGroup>
                 {!mostrarFiltros && (
                   menu.map(plato => (

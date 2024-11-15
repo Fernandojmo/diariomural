@@ -48,9 +48,9 @@ const Navigation = () => {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                       <Nav className="flex-grow-1 pe-3">
-                        <Nav.Link href="/inicio" className="text-white bg-dark border-dark rounded m-1 p-2">Inicio</Nav.Link>
                         <Nav.Link href="/" className="text-white bg-dark border-dark rounded m-1 p-2">Actividades</Nav.Link>
                         <Nav.Link href="/publicar" className="text-white bg-dark border-dark rounded m-1 p-2">Publicar</Nav.Link>
+                        <Nav.Link href="/quienes-somos" className="text-white bg-dark border-dark rounded m-1 p-2">Quienes somos</Nav.Link>
                       </Nav>
                     </Offcanvas.Body>
                   </Navbar.Offcanvas>
@@ -89,9 +89,11 @@ const Navigation = () => {
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     <Nav className="flex-grow-1 pe-3">
-                      <Nav.Link href="/inicio" className="text-white bg-dark border-dark rounded m-1 p-2">Inicio</Nav.Link>
+
+                      
                       <Nav.Link href="/" className="text-white bg-dark border-dark rounded m-1 p-2">Actividades</Nav.Link>
                       <Nav.Link href="/publicar" className="text-white bg-dark border-dark rounded m-1 p-2">Publicar</Nav.Link>
+                      <Nav.Link href="/quienes-somos" className="text-white bg-dark border-dark rounded m-1 p-2">Quienes somos</Nav.Link>
                     </Nav>
                   </Offcanvas.Body>
                 </Navbar.Offcanvas>

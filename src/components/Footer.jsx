@@ -61,23 +61,23 @@ const Footer = () => {
                     </Col> */}
                     <Col >
                         <ul className='m-4 list-unstyled'>
-                            <li>
+                            {/* <li>
                                 <h3>Contacto</h3>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <Button
                                     href='/inicio'
                                     variant='link'
                                     style={{ textDecoration: 'none', color: 'white' }}    
                                     >Quienes somos
                                 </Button>
-                            </li>
+                            </li> */}
                             <li>
                             <Button
-                                    href='/inicio'
+                                    href="mailto:diariomuralcurico@gmail.com"
                                     variant='link'
                                     style={{ textDecoration: 'none', color: 'white' }}    
-                                    >Contactanos
+                                    >diariomuralcurico@gmail.com
                             </Button>
                             </li>
                             <li>
