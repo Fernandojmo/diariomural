@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Ratio from 'react-bootstrap/Ratio';
 import { ListGroup } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
+import dayjs from 'dayjs';
+import { es } from "dayjs/locale/es";
 
 const Tarjeta = ({ menu, setMenu }) => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
@@ -89,7 +91,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                         {/* <br></br><Button variant="info">Ver detalles</Button> */}
                       </Card.Body>
                       <Card.Footer>
-                        <Card.Title>EL {plato.fecha} A LAS {plato.hora}</Card.Title>
+                        <Card.Title>El {dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('ddd D-MMM-YY').toUpperCase()} a las {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Title>
                       </Card.Footer>
                     </Card>
                   </Col>

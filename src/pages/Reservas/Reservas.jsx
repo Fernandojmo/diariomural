@@ -4,6 +4,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Timestamp } from "firebase/firestore";
 
 const Reservas = () => {
     const [reserva, setReserva] = useState([]);
@@ -71,6 +72,19 @@ const Reservas = () => {
             }
         }
     };
+
+    const getTimestamp = () => {
+      const { fecha, hora } = user;
+  
+      if (fecha && hora) {
+          // Combina fecha y hora para crear un objeto Date
+          const dateTime = new Date(`${fecha}T${hora}`);
+          // Retorna el Timestamp de Firebase
+          return Timestamp.fromDate(dateTime);
+      }
+      return null; // Si no hay valores válidos, retorna null
+  };
+
     // const handleSubmit = () =>{
     //   const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
     //   if (confirmSubmit){
@@ -100,8 +114,13 @@ const Reservas = () => {
 
         try {
             const collectionRef2 = collection(db, 'menu');
+
+            // Obtén el Timestamp desde fecha y hora
+            const actividadTimestamp = getTimestamp();
+
             await addDoc(collectionRef2, {
                 ...user,
+                fechaHoraActividad: actividadTimestamp,
                 image: imageUrl // Guardar la URL de la imagen en Firestore
             });
         } catch (error) {

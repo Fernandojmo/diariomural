@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Ratio from 'react-bootstrap/Ratio';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
+import dayjs from 'dayjs';
+import { es } from "dayjs/locale/es";
 
 const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
 
@@ -70,7 +72,7 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
                                                 <Button variant="warning" className="m-2" onClick={() => handleDeleteCard(plato.id)}>Eliminar</Button>
                                             </Card.Body>
                                             <Card.Footer className="text-muted">
-                                                <Card.Text>El {plato.fecha} A las {plato.hora}</Card.Text>
+                                                <Card.Text>El {dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('D-MMM-YY')} a las {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Text>
                                             </Card.Footer>
                                         </Card>
                                     </Col>
