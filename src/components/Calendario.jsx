@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { format, parse, startOfWeek, getDay } from 'date-fns';
-import { es } from 'date-fns/locale'; // Importa el idioma español si es necesario
+import  es  from 'date-fns/locale/es'; // Importa el idioma español si es necesario
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import moment from "moment";
+
 const Calendario = (eventos) => {
   const locales = {
   es: es,
@@ -43,10 +43,11 @@ console.log("data desde eventosCalendario",eventosCalendario[0])
 console.log("data desde myeventlist",myEventsList)
 
   return (
-    <div className='mb-2 mt-2'>
+    <div className='mb-2 mt-2 m-2'>
       <div className="calendario-container" style={{ height: '500px' }}>
       <Calendar
         localizer={localizer}
+        culture="es"
         events={eventosCalendario[0]}
         startAccessor="start"
         endAccessor="end"
@@ -60,8 +61,7 @@ console.log("data desde myeventlist",myEventsList)
           week: 'Semana',
           day: 'Día',
           agenda: 'Agenda',
-          noEventsInRange: 'No hay eventos en este rango',
-          
+          noEventsInRange: 'No hay eventos en este rango',          
         }}
       />
     </div>
@@ -75,13 +75,14 @@ console.log("data desde myeventlist",myEventsList)
             <div className="">
               <img src={selectedEvent.image} style={{ width: "100%", marginBottom: "15px", borderRadius: "5px" }}/>
               <p><strong>Título:</strong> {selectedEvent.title}</p>
-              <p><strong>Fecha:</strong> {moment(selectedEvent.start).format("YYYY-MM-DD")} <strong>Hora:</strong> {moment(selectedEvent.start).format("HH:mm")}</p>
+              <p><strong>Fecha:</strong> {format(selectedEvent.start, "EEEE dd 'de' MMMM yyyy", { locale: es }).toUpperCase()}</p>
+              <p> <strong>Hora:</strong> {format(selectedEvent.start, "HH:mm")}</p>
               <p>{selectedEvent.description || "Sin descripción"}</p>
               <p><strong>Ubicación:</strong> {selectedEvent.address || "No especificada"}</p>
               <Button variant="link"><strong>Redes:</strong> {selectedEvent.link || "No especificada"}</Button>
             </div>
           )}
-        </Modal.Body>
+        </Modal.Body>      
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseModal}>
             Cerrar
