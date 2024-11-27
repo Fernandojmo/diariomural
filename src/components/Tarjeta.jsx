@@ -46,7 +46,7 @@ const Tarjeta = ({ menu, setMenu }) => {
     <div>
       <div id="menu-display" className='bg-info'>
         <Row>
-          <Col xs={12} sm={3} md={2}>
+          <Col xs={12} sm={12} md={12} lg={2}>
             <div id="filtros" className='m-2 bg-light rounded p-3'>
               <h4>Filtra Aquí</h4>
               <ListGroup>
@@ -68,12 +68,12 @@ const Tarjeta = ({ menu, setMenu }) => {
               </ListGroup>
             </div>
           </Col>
-          <Col xs={12} sm={9} md={10}>
+          <Col xs={12} sm={12} md={12} lg={10}>
             <div id="contenedorcartas" className='m-2 p-2  bg-info  rounded'>
-              <Row xs={1} sm={1} md={1} lg={2} xl={2} xxl={3} className="g-4">
+              <Row className="g-4 justify-content-center">
                 {menuOrdenado.map(plato => (
                   <Col className="d-flex" key={plato.id}>
-                    <Card className=" mb-2 text-center flex-fill">
+                    <Card className=" mb-2 text-center fixed-card" style={{ width: '400px', height: '900px', overflow: 'hidden' }}>
                       <CardHeader>
                         <Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle>
                       </CardHeader>
