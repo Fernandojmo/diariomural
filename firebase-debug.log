@@ -1,0 +1,107 @@
+[debug] [2024-11-27T14:06:39.593Z] ----------------------------------------------------------------------
+[debug] [2024-11-27T14:06:39.595Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ferna\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-11-27T14:06:39.596Z] CLI Version:   13.24.1
+[debug] [2024-11-27T14:06:39.596Z] Platform:      win32
+[debug] [2024-11-27T14:06:39.596Z] Node Version:  v18.12.1
+[debug] [2024-11-27T14:06:39.597Z] Time:          Wed Nov 27 2024 11:06:39 GMT-0300 (hora de verano de Chile)
+[debug] [2024-11-27T14:06:39.597Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-27T14:06:39.600Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-11-27T14:06:39.699Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-27T14:06:39.699Z] > authorizing via signed-in user (fernando.javier.melo@gmail.com)
+[debug] [2024-11-27T14:06:39.699Z] [iam] checking project testbackend-fm for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-11-27T14:06:39.700Z] Checked if tokens are valid: false, expires at: 1731637414732
+[debug] [2024-11-27T14:06:39.700Z] Checked if tokens are valid: false, expires at: 1731637414732
+[debug] [2024-11-27T14:06:39.700Z] > refreshing access token with scopes: []
+[debug] [2024-11-27T14:06:39.701Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-11-27T14:06:39.701Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-11-27T14:06:39.872Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-11-27T14:06:39.872Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-11-27T14:06:39.882Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/testbackend-fm:testIamPermissions [none]
+[debug] [2024-11-27T14:06:39.882Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/testbackend-fm:testIamPermissions x-goog-quota-user=projects/testbackend-fm
+[debug] [2024-11-27T14:06:39.882Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/testbackend-fm:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-27T14:06:40.210Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-11-27T14:06:40.210Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-11-27T14:06:40.991Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/testbackend-fm:testIamPermissions 200
+[debug] [2024-11-27T14:06:40.991Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/testbackend-fm:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-27T14:06:40.991Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:40.991Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:40.992Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/testbackend-fm [none]
+[debug] [2024-11-27T14:06:41.606Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/testbackend-fm 200
+[debug] [2024-11-27T14:06:41.607Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/testbackend-fm {"projectId":"testbackend-fm","projectNumber":"900959139350","displayName":"testbackend-fm","name":"projects/testbackend-fm","resources":{"hostingSite":"testbackend-fm"},"state":"ACTIVE","etag":"1_2b5fad2a-7e3c-4402-976f-7898b19dd754"}
+[info] 
+[info] === Deploying to 'testbackend-fm'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2024-11-27T14:06:41.612Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:41.612Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:41.612Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions [none]
+[debug] [2024-11-27T14:06:41.612Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2024-11-27T14:06:43.522Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions 200
+[debug] [2024-11-27T14:06:43.522Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions {"name":"projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[testbackend-fm]: beginning deploy... 
+[info] i  hosting[testbackend-fm]: found 27 files in build 
+[debug] [2024-11-27T14:06:43.542Z] [hosting] uploading with 200 concurrency
+[debug] [2024-11-27T14:06:43.920Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:43.921Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:43.922Z] [hosting] hash cache [YnVpbGQ] stored for 27 files
+[debug] [2024-11-27T14:06:43.922Z] [hosting][hash queue][FINAL] {"max":363,"min":6,"avg":47.2962962962963,"active":0,"complete":27,"success":27,"errored":0,"retried":0,"total":27,"elapsed":373}
+[debug] [2024-11-27T14:06:43.922Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27:populateFiles [none]
+[debug] [2024-11-27T14:06:43.922Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27:populateFiles {"files":{"/robots.txt":"bfe106a3fb878dc83461c86818bf74fc1bdc7f28538ba613cd3e775516ce8b49","/manifest.json":"aff3449bdc238776f5d6d967f19ec491b36aed5fb7f23ccff6500736fd58494a","/logo512.png":"ee7e2f3fdb8209c4b6fd7bef6ba50d1b9dba30a25bb5c3126df057e1cb6f5331","/logo192.png":"3ee59515172ee198f3be375979df15ac5345183e656720a381b8872b2a39dc8b","/Favicon.png":"4905ad5a6eb08480fb85f8f972eebfb93ca8c46eed472be499e657888a9426ec","/favicon.ico":"eae62e993eb980ec8a25058c39d5a51feab118bd2100c4deebb2a9c158ec11f9","/_redirects":"719588b6ea8cbb6f23fff724fc222f785988189c2b7fd3fefbdd2cabbc901c16","/index.html":"44f4f03277e7c5c897c356e1259c3578f4d1791a3f01381c896fbda9345b0fe0","/asset-manifest.json":"579d0ff4debf4ca68bb39dd5a7fffe3e98304e1e35f4e12feb966c1f7477c6d4","/static/media/correo.76664b903f2448d85171.png":"ff419e9aefd6e803795c7beeae8a964d05833e86f7dd8cc92e46d7e0c22fc601","/static/js/main.209c7724.js.LICENSE.txt":"259b7f48dfb2fb56f51ebd7049d62e4a5bd95afe61bb4b401a91814e5c731108","/static/media/lgdmcfull.a8aaa24397ecbdbc3988.png":"d79599dda4c1d6d18528d9b7e1144ade4ceed9499004eb15a9fa18e5202c4407","/static/media/instagram.cec5736859c50a5a0dc7.png":"78b44cc4aac902e9f41fac855fd178ffac9174c7518b5c4742badd1d1c6f1e9e","/static/media/bg1.6e9801c7e78a55c37a25.png":"cc81aea0636307a94efcaa1e761bde9c35cfed647ebb1e36c25f5d3cd1f74961","/static/css/main.b306feaf.css":"b5dc352800f3045281769cd070075c4a9a027df5cc06bd05b7a2979829e033ff","/static/media/logoencabezado.42f9806ad8cc49eb8f7f.png":"f5fc62c75e39444f8f5bc335e7952f08bb1c820a29c3049dfbbc89b679949b70","/static/media/afcorpo.88c667003fa6bc8ce2f0.jpeg":"eb2840a9fa215e6c42236b6d5dd6023723cab738e31af0223da7730b2629c7ad","/static/media/afnagata.cd7b7c3a39da0494ba24.jpeg":"78edfbcc3e6805ee7ad72eaf67552cef28a9fb6f877b496190014be0349b469a","/static/media/afmaca.89e70407e4e463206f52.jpeg":"1bc82b3e4d3a470614814a2c8197cf5b4aa4fcad3c68c85cfe0338513258da61","/static/media/maca2.84f45fc277bbb7fb85b1.png":"c65134141b4a2748b04a83b484f5dcd849fcc41f0b9dc98a84e1985cd3b2b16a","/static/css/main.b306feaf.css.map":"a45bf78f5868773a333f3c42e8b0aa4d87c79fdcb01def40e88165267668703c","/static/media/pompeii.bf322039aae25e3fccfe.png":"dfce93ca42c6efc6a2796fd3a0724e63e415df78ad9f861c2cb6541aaef3fb94","/static/media/bicis.25e13334449fb36aa3b8.jpg":"fc2de540ea13a05e67b03b98b0709184fa849938ae7752e688bae9efddd5f808","/static/media/afpompeii.18487deee887d726996b.jpeg":"a88ca2d715671cd2fb17fcbe861864ef3d28bb68afdca315aa3576a62b9c496c","/static/js/main.209c7724.js":"6748c6a36c8542a6793b25614b5eba312600db2892861cf5fdc3f9c24646c998","/static/media/corpo.324060e20858e16e9177.png":"b19a356388e6634471a33dd4d67f13022e69b5ab3f099738ccc2579c083e0d65","/static/js/main.209c7724.js.map":"8b0b396fe5651359a711b73506636ca59540be70b14c816493b19fc0aad06266"}}
+[debug] [2024-11-27T14:06:45.216Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27:populateFiles 200
+[debug] [2024-11-27T14:06:45.216Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/testbackend-fm/versions/0dcfe2dc812d6f27/files"}
+[debug] [2024-11-27T14:06:45.216Z] [hosting][populate queue][FINAL] {"max":1296,"min":1296,"avg":1296,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1296}
+[debug] [2024-11-27T14:06:45.216Z] [hosting] uploads queued: 0
+[debug] [2024-11-27T14:06:45.217Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1732716405217}
+[info] +  hosting[testbackend-fm]: file upload complete 
+[debug] [2024-11-27T14:06:45.217Z] [hosting] deploy completed after 1692ms
+[debug] [2024-11-27T14:06:45.217Z] [
+  {
+    "config": {
+      "redirects": [
+        {
+          "source": "www.diariomuralcurico.cl",
+          "destination": "https://diariomuralcurico.cl",
+          "type": 301
+        }
+      ],
+      "public": "build",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "testbackend-fm"
+    },
+    "version": "projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27"
+  }
+]
+[info] i  hosting[testbackend-fm]: finalizing version... 
+[debug] [2024-11-27T14:06:45.219Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:45.219Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:45.220Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions/0dcfe2dc812d6f27 updateMask=status%2Cconfig
+[debug] [2024-11-27T14:06:45.220Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions/0dcfe2dc812d6f27 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}],"redirects":[{"glob":"www.diariomuralcurico.cl","location":"https://diariomuralcurico.cl","statusCode":301}]}}
+[debug] [2024-11-27T14:06:46.881Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions/0dcfe2dc812d6f27 200
+[debug] [2024-11-27T14:06:46.881Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/versions/0dcfe2dc812d6f27 {"name":"projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27","status":"FINALIZED","config":{"redirects":[{"statusCode":301,"location":"https://diariomuralcurico.cl","glob":"www.diariomuralcurico.cl"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-11-27T14:06:44.395077Z","createUser":{"email":"fernando.javier.melo@gmail.com"},"finalizeTime":"2024-11-27T14:06:48.391226Z","finalizeUser":{"email":"fernando.javier.melo@gmail.com"}}
+[debug] [2024-11-27T14:06:46.881Z] [hosting] finalized version for testbackend-fm:[object Object]
+[info] +  hosting[testbackend-fm]: version finalized 
+[info] i  hosting[testbackend-fm]: releasing new version... 
+[debug] [2024-11-27T14:06:46.882Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:46.883Z] Checked if tokens are valid: true, expires at: 1732719998873
+[debug] [2024-11-27T14:06:46.883Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/channels/live/releases versionName=projects%2F900959139350%2Fsites%2Ftestbackend-fm%2Fversions%2F0dcfe2dc812d6f27
+[debug] [2024-11-27T14:06:46.883Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/channels/live/releases {}
+[debug] [2024-11-27T14:06:48.532Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/channels/live/releases 200
+[debug] [2024-11-27T14:06:48.532Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/testbackend-fm/channels/live/releases {"name":"projects/900959139350/sites/testbackend-fm/channels/live/releases/1732716409396000","version":{"name":"projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27","status":"FINALIZED","config":{"redirects":[{"statusCode":301,"location":"https://diariomuralcurico.cl","glob":"www.diariomuralcurico.cl"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-11-27T14:06:44.395077Z","createUser":{"email":"fernando.javier.melo@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJPIrZrVFN8m-0MoD9iPIcmSnCI1kHD5jxMcxjMcoO0gCF1L9pFdw"},"finalizeTime":"2024-11-27T14:06:48.391226Z","finalizeUser":{"email":"fernando.javier.melo@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJPIrZrVFN8m-0MoD9iPIcmSnCI1kHD5jxMcxjMcoO0gCF1L9pFdw"}},"type":"DEPLOY","releaseTime":"2024-11-27T14:06:49.396Z","releaseUser":{"email":"fernando.javier.melo@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJPIrZrVFN8m-0MoD9iPIcmSnCI1kHD5jxMcxjMcoO0gCF1L9pFdw"}}
+[debug] [2024-11-27T14:06:48.532Z] [hosting] release: {"name":"projects/900959139350/sites/testbackend-fm/channels/live/releases/1732716409396000","version":{"name":"projects/900959139350/sites/testbackend-fm/versions/0dcfe2dc812d6f27","status":"FINALIZED","config":{"redirects":[{"statusCode":301,"location":"https://diariomuralcurico.cl","glob":"www.diariomuralcurico.cl"}],"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-11-27T14:06:44.395077Z","createUser":{"email":"fernando.javier.melo@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJPIrZrVFN8m-0MoD9iPIcmSnCI1kHD5jxMcxjMcoO0gCF1L9pFdw"},"finalizeTime":"2024-11-27T14:06:48.391226Z","finalizeUser":{"email":"fernando.javier.melo@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJPIrZrVFN8m-0MoD9iPIcmSnCI1kHD5jxMcxjMcoO0gCF1L9pFdw"}},"type":"DEPLOY","releaseTime":"2024-11-27T14:06:49.396Z","releaseUser":{"email":"fernando.javier.melo@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJPIrZrVFN8m-0MoD9iPIcmSnCI1kHD5jxMcxjMcoO0gCF1L9pFdw"}}
+[info] +  hosting[testbackend-fm]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/testbackend-fm/overview
+[info] Hosting URL: https://testbackend-fm.web.app
