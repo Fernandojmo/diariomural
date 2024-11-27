@@ -36,8 +36,8 @@ useEffect (()=>{
                 data.id=doc.id
                 return data
         })
-        // const approvedItems = docs.filter((item)=> item.aprovado===1);
-        const convertedItems = convertirActividadesACalendario(docs);
+        const approvedItems = docs.filter((item)=> item.aprovado===1);
+        const convertedItems = convertirActividadesACalendario(approvedItems);
         setEventos(convertedItems);
         
         }catch(error){
