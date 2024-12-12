@@ -75,9 +75,9 @@ const Navigation = () => {
 
           {/* Navbar con Offcanvas */}
           <Col xs="auto">
-            <Navbar key="sm" expand="sm">
+            <Navbar variant="dark" key="sm" expand="sm">
               <Container fluid>
-                <Navbar.Toggle className="bg-info h1" aria-controls="offcanvasNavbar-expand-sm" />
+                <Navbar.Toggle className="bg-dark h1" aria-controls="offcanvasNavbar-expand-sm" />
                 <Navbar.Offcanvas
                   id="offcanvasNavbar-expand-sm"
                   aria-labelledby="offcanvasNavbarLabel-expand-sm"
