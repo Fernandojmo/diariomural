@@ -13,7 +13,7 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
     // Función para manejar el cambio del switch "aprovado"
     
     const handleApprove = (id, currentValue) => {
-        const confirmAprove = window.confirm("¿Estás seguro de que deseas aprovar este elemento?");
+        const confirmAprove = window.confirm("¿Estás seguro de que deseas aprobar este elemento?");
         if (confirmAprove){
             const updatedValue = currentValue === 1 ? 0 : 1; // Alterna entre 1 y 0
             handleUpdate(id, { aprovado: updatedValue });  
