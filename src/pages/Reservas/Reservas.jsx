@@ -198,7 +198,16 @@ const Reservas = () => {
 
               
                   <Form.Label>Descripción de actividad o bases (concurso)</Form.Label>
-                  <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
+                  <Form.Control 
+                    as="textarea"
+                    rows={5} // Define el número de filas visibles
+                    style={{ resize: "vertical", overflowY: "scroll" }} // Permite redimensionar verticalmente y agrega scroll
+                    onChange={catchInputs}
+                    value={user.descripcion}
+                    required
+                    name="descripcion"
+                    placeholder="Descripcion"
+                  />
 
               
                   <Form.Label>Responsable directo </Form.Label>
