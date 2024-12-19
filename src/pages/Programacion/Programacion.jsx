@@ -36,7 +36,11 @@ useEffect (()=>{
                 data.id=doc.id
                 return data
         })
-        const approvedItems = docs.filter((item)=> item.aprovado===1);
+        const approvedItems = docs.filter((item) => {
+          const now = new Date(); // Fecha actual
+          const fechaFin = new Date(item.fechaHoraFinActividad.seconds * 1000); // Convierte el timestamp de Firestore a Date
+          return item.aprovado === 1 && fechaFin >= now;
+        });
         const convertedItems = convertirActividadesACalendario(approvedItems);
         setEventos(convertedItems);
         
