@@ -150,7 +150,6 @@ const Reservas = () => {
                   <Form.Label>Nombre actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
 
-              
                   <Form.Label htmlFor="disabledSelect">Categoría</Form.Label>
                   <Form.Select onChange={catchInputs} value={user.categoria} required name='categoria' id="disabledSelect">
                     <option>Artes y diseño</option>
@@ -165,38 +164,30 @@ const Reservas = () => {
                     <option>Otro</option>
                   </Form.Select>
 
-              
                   <Form.Label>Institución que organiza</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.organiza} required name='organiza' placeholder="Institucion que organiza" />
 
-              
                   <Form.Label>Valor</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.precio} required name='precio' type="number" placeholder="Precio" />
 
                   <Form.Label>Fecha inicio de la actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.fecha} required type="date" name="fecha" placeholder="Date" />
 
-              
                   <Form.Label>Hora de inicio de la actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.hora} required type="time" name="hora" placeholder="time" />
 
                   <Form.Label>Fecha de finalización de la Actividad o término de concurso</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.fechaFin} required type="date" name="fechaFin" placeholder="Date" />
 
-              
                   <Form.Label>Hora de finalización de la actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.horaFin} required type="time" name="horaFin" placeholder="time" />
 
-              
                   <Form.Label>Afiche o imagen</Form.Label>
                   <Form.Control type="file" onChange={handleImageChange} required />
                   {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-              
                   <Form.Label>Dirección de la actividad (Si es online indicar ONLINE)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
 
-              
                   <Form.Label>Descripción de actividad o bases (concurso)</Form.Label>
                   <Form.Control 
                     as="textarea"
@@ -209,23 +200,18 @@ const Reservas = () => {
                     placeholder="Descripcion"
                   />
 
-              
                   <Form.Label>Responsable directo </Form.Label>
                   <Form.Control onChange={catchInputs} value={user.persona} required name='persona' placeholder="Nombre de quien publica" />
 
-              
                   <Form.Label>Teléfono responsable directo</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.telefono} required name='telefono' placeholder="9 12345678" />
 
-              
                   <Form.Label>Correo responsable directo</Form.Label>
                   <Form.Control onChange={catchInputs} type='email' value={user.correo} required name='correo' placeholder="Correo@gmail.cl" />
 
-              
                   <Form.Label>Link redes sociales</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.link} required name='link' placeholder="https://instagram.com/actividad" />
 
-              
                 <Form.Label htmlFor="disabledSelect">Edad mínima recomendada</Form.Label>
                 <Form.Select onChange={catchInputs} value={user.edad} required name='edad' id="disabledSelect">
                     <option>0+ años</option>
