@@ -14,6 +14,8 @@ const Reservas = () => {
     const valoresIniciales = {
         fecha: '',
         hora: '',
+        fechaFin:'',
+        horaFin:'',
         nombre: '',
         categoria: 'Artes y diseño',
         organiza: '',
@@ -73,6 +75,7 @@ const Reservas = () => {
         }
     };
 
+      //Funcion para obtener en timestamp fecha y hora inicio actividad
     const getTimestamp = () => {
       const { fecha, hora } = user;
   
@@ -84,13 +87,19 @@ const Reservas = () => {
       }
       return null; // Si no hay valores válidos, retorna null
   };
+  // Funcion para obtener en timestamp fecha y hora fin actividad
+  const getEndTimestamp = () => {
+    const { fechaFin, horaFin } = user;
 
-    // const handleSubmit = () =>{
-    //   const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
-    //   if (confirmSubmit){
+    if (fechaFin && horaFin) {
+        // Combina fecha y hora para crear un objeto Date
+        const dateTimeEnd = new Date(`${fechaFin}T${horaFin}`);
+        // Retorna el Timestamp de Firebase
+        return Timestamp.fromDate(dateTimeEnd);
+    }
+    return null; // Si no hay valores válidos, retorna null
+};
 
-    //   }
-    // }
     const reservarMesa = async (e) => {
         e.preventDefault();
         const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
@@ -117,10 +126,11 @@ const Reservas = () => {
 
             // Obtén el Timestamp desde fecha y hora
             const actividadTimestamp = getTimestamp();
-
+            const actividadEndTimestamp = getEndTimestamp();
             await addDoc(collectionRef2, {
                 ...user,
                 fechaHoraActividad: actividadTimestamp,
+                fechaHoraFinActividad: actividadEndTimestamp,
                 image: imageUrl // Guardar la URL de la imagen en Firestore
             });
         } catch (error) {
@@ -139,8 +149,8 @@ const Reservas = () => {
                 <Form.Group className="mb-3 m-2">
                   <Form.Label>Nombre actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label htmlFor="disabledSelect">Categoría</Form.Label>
                   <Form.Select onChange={catchInputs} value={user.categoria} required name='categoria' id="disabledSelect">
                     <option>Artes y diseño</option>
@@ -154,53 +164,59 @@ const Reservas = () => {
                     <option>Turismo</option>
                     <option>Otro</option>
                   </Form.Select>
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Institución que organiza</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.organiza} required name='organiza' placeholder="Institucion que organiza" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Valor</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.precio} required name='precio' type="number" placeholder="Precio" />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Label>Fecha Actividad o término de concurso</Form.Label>
+
+                  <Form.Label>Fecha inicio de la actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.fecha} required type="date" name="fecha" placeholder="Date" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
-                  <Form.Label>Hora de la actividad</Form.Label>
+
+              
+                  <Form.Label>Hora de inicio de la actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.hora} required type="time" name="hora" placeholder="time" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+                  <Form.Label>Fecha de finalización de la Actividad o término de concurso</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.fechaFin} required type="date" name="fechaFin" placeholder="Date" />
+
+              
+                  <Form.Label>Hora de finalización de la actividad</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.horaFin} required type="time" name="horaFin" placeholder="time" />
+
+              
                   <Form.Label>Afiche o imagen</Form.Label>
                   <Form.Control type="file" onChange={handleImageChange} required />
                   {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Dirección de la actividad (Si es online indicar ONLINE)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Descripción de actividad o bases (concurso)</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.descripcion} required name='descripcion' placeholder="Descripcion" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Responsable directo </Form.Label>
                   <Form.Control onChange={catchInputs} value={user.persona} required name='persona' placeholder="Nombre de quien publica" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Teléfono responsable directo</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.telefono} required name='telefono' placeholder="9 12345678" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Correo responsable directo</Form.Label>
                   <Form.Control onChange={catchInputs} type='email' value={user.correo} required name='correo' placeholder="Correo@gmail.cl" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                   <Form.Label>Link redes sociales</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.link} required name='link' placeholder="https://instagram.com/actividad" />
-                </Form.Group>
-                <Form.Group className="mb-3 m-2">
+
+              
                 <Form.Label htmlFor="disabledSelect">Edad mínima recomendada</Form.Label>
                 <Form.Select onChange={catchInputs} value={user.edad} required name='edad' id="disabledSelect">
                     <option>0+ años</option>

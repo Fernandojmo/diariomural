@@ -11,7 +11,7 @@ export const Programacion = () => {
     const convertirActividadesACalendario = (actividades) => {
         return actividades.map((actividad) => {
           const fechaHoraInicio = new Date(actividad.fechaHoraActividad.seconds * 1000); // Convertir el timestamp a Date
-          const fechaHoraFin = new Date(fechaHoraInicio.getTime() + 2 * 60 * 60 * 1000); // Asumimos 2 horas de duración
+          const fechaHoraFin = new Date(actividad.fechaHoraFinActividad.seconds * 1000); 
       
           return {
             title: actividad.nombre, // Nombre del evento

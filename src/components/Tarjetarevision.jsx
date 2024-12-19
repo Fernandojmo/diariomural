@@ -73,6 +73,7 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
                                             </Card.Body>
                                             <Card.Footer className="text-muted">
                                                 <Card.Text>El {dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('D-MMM-YY')} a las {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Text>
+                                                <Card.Text>Fin {dayjs(plato.fechaHoraFinActividad.toDate()).locale("es").format('D-MMM-YY')} a las {dayjs(plato.fechaHoraFinActividad.toDate()).format('H:mm A')}</Card.Text>
                                             </Card.Footer>
                                         </Card>
                                     </Col>
