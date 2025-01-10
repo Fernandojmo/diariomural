@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import { es } from "dayjs/locale/es";
 
 const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
-
+    
     // Función para manejar el cambio del switch "aprovado"
     
     const handleApprove = (id, currentValue) => {

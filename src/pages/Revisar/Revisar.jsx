@@ -48,12 +48,6 @@ const Revisar = () => {
             const itemToDelete = menu.find(plato => plato.id === id);
             const imageUrl = itemToDelete?.image;  // Asume que la URL de la imagen se guarda en el campo 'image'
             
-            // Eliminar la imagen de Firebase Storage si existe
-            if (imageUrl) {
-                const imageRef = ref(storage, imageUrl);
-                await deleteObject(imageRef);
-            }
-
             // Referencia al documento en Firestore
             const docRef = doc(db, 'menu', id);
             await deleteDoc(docRef);
@@ -61,6 +55,12 @@ const Revisar = () => {
             // Actualizar el estado local eliminando la tarjeta
             const updatedMenu = menu.filter(plato => plato.id !== id);
             setMenu(updatedMenu);
+            
+            // Eliminar la imagen de Firebase Storage si existe
+            if (imageUrl) {
+                const imageRef = ref(storage, imageUrl);
+                await deleteObject(imageRef);
+            }
         } catch (error) {
             console.error("Error al eliminar el documento o la imagen:", error);
         }

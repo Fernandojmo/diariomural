@@ -26,7 +26,10 @@ const Reservas = () => {
         aprovado: 0,
         persona: '',
         telefono: '',
-        correo: ''
+        correo: '',
+        esPeriodica: false,
+        frecuencia: '',
+        fechaRepeticionFin: ''
     };
 
     const [user, setUser] = useState(valoresIniciales);
@@ -103,40 +106,69 @@ const Reservas = () => {
     const reservarMesa = async (e) => {
         e.preventDefault();
         const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
-        if (!confirmSubmit){
-            return;
-        }
-                // Evitar envío si no hay un archivo o si hay un mensaje de error
-        if (!imageFile || errorMessage) {
-          return; // Salir de la función sin enviar el formulario
-        }
+        if (!confirmSubmit) return;
+    
+        // Verificar si la imagen es válida
+        if (!imageFile || errorMessage) return;
+    
         let imageUrl = '';
-
-        // Subir imagen a Firebase Storage si se ha seleccionado un archivo válido
         if (imageFile) {
-          // Generar un nombre de archivo único utilizando Date.now()
-            const uniqueImageName = `images/${Date.now()}-${imageFile.name}`;
-            const imageRef = ref(storage, uniqueImageName);
-            await uploadBytes(imageRef, imageFile);
-            imageUrl = await getDownloadURL(imageRef); // Obtener la URL de descarga de la imagen
+        const uniqueImageName = `images/${Date.now()}-${imageFile.name}`;
+        const imageRef = ref(storage, uniqueImageName);
+        await uploadBytes(imageRef, imageFile);
+        imageUrl = await getDownloadURL(imageRef);
         }
-
+    
         try {
-            const collectionRef2 = collection(db, 'menu');
+        const collectionRef2 = collection(db, 'menu');
+    
+        // Si es una actividad periódica, genera múltiples entradas
+        if (user.esPeriodica) {
+            const { fecha, hora, fechaFin, horaFin, frecuencia, fechaRepeticionFin } = user;
+            
+            const fechaInicio = new Date(`${fecha}T${hora}`);
+            const fechaTermino = new Date(`${fechaFin}T${horaFin}`);
+            const fechaFinRepeticion = new Date(fechaRepeticionFin);
+            fechaFinRepeticion.setDate(fechaFinRepeticion.getDate() + 1)
+            const incrementos = {
+            diaria: 1,
+            semanal: 7,
+            mensual: 30
+            };
+    
+            const reservas = [];
+            let fechaActual = new Date(fechaInicio);
+            let fechaFinalizacion= new Date(fechaTermino)
 
-            // Obtén el Timestamp desde fecha y hora
-            const actividadTimestamp = getTimestamp();
-            const actividadEndTimestamp = getEndTimestamp();
-            await addDoc(collectionRef2, {
+            while (fechaActual <= fechaFinRepeticion) {
+            reservas.push({
                 ...user,
-                fechaHoraActividad: actividadTimestamp,
-                fechaHoraFinActividad: actividadEndTimestamp,
-                image: imageUrl // Guardar la URL de la imagen en Firestore
+                fechaHoraActividad: Timestamp.fromDate(fechaActual),
+                fechaHoraFinActividad: Timestamp.fromDate(fechaFinalizacion),
+                image: imageUrl
             });
-        } catch (error) {
-            console.log(error);
+    
+            // Incrementar la fecha según la frecuencia
+            fechaActual.setDate(fechaActual.getDate() + incrementos[frecuencia]);
+            fechaFinalizacion.setDate(fechaFinalizacion.getDate() + incrementos[frecuencia]);
+            }
+    
+            // Agregar todas las reservas generadas a Firebase
+            const batch = reservas.map((reserva) => addDoc(collectionRef2, reserva));
+            await Promise.all(batch);
+        } else {
+            // Si no es periódica, agregar una sola entrada
+            await addDoc(collectionRef2, {
+            ...user,
+            fechaHoraActividad: getTimestamp(),
+            fechaHoraFinActividad: getEndTimestamp(),
+            image: imageUrl
+            });
         }
-        
+        } catch (error) {
+        console.log(error);
+        }
+    
         setUser({ ...valoresIniciales });
         setImageFile(null);
         await window.location.reload(true);
@@ -147,6 +179,39 @@ const Reservas = () => {
             <Form className='m-4 p-4' onSubmit={reservarMesa}>
               <fieldset>
                 <Form.Group className="mb-3 m-2">
+                <Form.Label>¿Es una actividad periódica?</Form.Label>
+                    <Form.Check 
+                    type="checkbox" 
+                    label="Sí" 
+                    onChange={(e) => setUser({ ...user, esPeriodica: e.target.checked })} 
+                    checked={user.esPeriodica || false} 
+                    name="esPeriodica" 
+                    />
+
+                    {user.esPeriodica && (
+                    <>
+                        <Form.Label>Frecuencia de la actividad</Form.Label>
+                        <Form.Select 
+                        onChange={catchInputs} 
+                        value={user.frecuencia} 
+                        required 
+                        name="frecuencia" 
+                        >
+                        <option value="diaria">Diaria</option>
+                        <option value="semanal">Semanal</option>
+                        {/* <option value="mensual">Mensual</option> */}
+                        </Form.Select>
+
+                        <Form.Label>Fecha de finalización de las actividades (Día de la ultima actividad)</Form.Label>
+                        <Form.Control 
+                        onChange={catchInputs} 
+                        value={user.fechaRepeticionFin || ''} 
+                        type="date" 
+                        name="fechaRepeticionFin" 
+                        required 
+                        />
+                    </>
+                    )}
                   <Form.Label>Nombre actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
 
