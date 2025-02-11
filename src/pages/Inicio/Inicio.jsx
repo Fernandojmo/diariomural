@@ -33,7 +33,7 @@ const Inicio = () => {
               <Carousel.Item>
                 <img
                   className="d-block w-100 vh-25"
-                  src={require('./../../images/afcorpo.jpeg')}
+                  src={require('./../../images/afcorpo.png')}
                   alt="corporacion cultural de curico"
                 />
               </Carousel.Item>
@@ -69,7 +69,7 @@ const Inicio = () => {
             <Ratio key={'1x1'} aspectRatio={'1x1'}>
               <Image
               className="w-100 p-4 m-2"
-              src={require('./../../images/bicis.jpg')}
+              src={require('./../../images/cerro.png')}
               alt="ciclismo en el bosque"
               />
             </Ratio>
@@ -104,7 +104,7 @@ const Inicio = () => {
               <Ratio key={'1x1'} aspectRatio={'1x1'}>
                 <Image
                 className="w-100 p-4 m-2"
-                src='https://cdn.pixabay.com/photo/2024/02/12/17/49/theater-8569119_1280.jpg'
+                src={require('./../../images/teatro.png')}
                 alt="Teatro curico"
                 />
               </Ratio>

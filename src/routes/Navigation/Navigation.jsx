@@ -14,8 +14,10 @@ const Navigation = () => {
     // <div>
     <div className="background-image">
       {/* Logo principal centrado */}
-      <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center">
+      <a href="https://diariomuralcurico.cl/" target="_blank">
         <img alt="Logo" src={logodmcfull} height="250" className="p-2 m-2" />
+      </a>
     </div>
     {/* </div> */}
       <Container className='m-1'>

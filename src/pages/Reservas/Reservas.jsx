@@ -5,11 +5,13 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Timestamp } from "firebase/firestore";
+import Modal from 'react-bootstrap/Modal';
 
 const Reservas = () => {
     const [reserva, setReserva] = useState([]);
     const [imageFile, setImageFile] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(''); // Estado para mensajes de error
+    const [errorMessage, setErrorMessage] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     const valoresIniciales = {
         fecha: '',
@@ -28,7 +30,8 @@ const Reservas = () => {
         telefono: '',
         correo: '',
         esPeriodica: false,
-        frecuencia: '',
+        frecuencia: 'diaria',
+        cantidadActividades: '1', // Nuevo campo
         fechaRepeticionFin: ''
     };
 
@@ -55,163 +58,164 @@ const Reservas = () => {
 
     const catchInputs = (e) => {
         const { name, value, type, checked } = e.target;
-        const newValue = type === "checkbox" ? (checked ? 1 : 0) : value;
-        console.log(user)
-        setUser({
-            ...user,
+        const newValue = type === "checkbox" ? checked : value;
+    
+        setUser((prevUser) => ({
+            ...prevUser,
             [name]: newValue
-        });
+        }));
     };
 
-    // Función para manejar la selección del archivo de imagen
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Verificar si el archivo es menor o igual a 1 MB
-            if (file.size <= 1 * 1024 * 1024) { // 1 MB en bytes
+            if (file.size <= 1 * 1024 * 1024) {
                 setImageFile(file);
-                setErrorMessage(''); // Limpiar mensaje de error si el tamaño es válido
+                setErrorMessage('');
             } else {
                 setErrorMessage('La imagen debe tener un tamaño máximo de 1 MB.');
-                setImageFile(null); // No guardar el archivo si es demasiado grande
+                setImageFile(null);
             }
         }
     };
 
-      //Funcion para obtener en timestamp fecha y hora inicio actividad
     const getTimestamp = () => {
-      const { fecha, hora } = user;
-  
-      if (fecha && hora) {
-          // Combina fecha y hora para crear un objeto Date
-          const dateTime = new Date(`${fecha}T${hora}`);
-          // Retorna el Timestamp de Firebase
-          return Timestamp.fromDate(dateTime);
-      }
-      return null; // Si no hay valores válidos, retorna null
-  };
-  // Funcion para obtener en timestamp fecha y hora fin actividad
-  const getEndTimestamp = () => {
-    const { fechaFin, horaFin } = user;
+        const { fecha, hora } = user;
+        if (fecha && hora) {
+            const dateTime = new Date(`${fecha}T${hora}`);
+            return Timestamp.fromDate(dateTime);
+        }
+        return null;
+    };
 
-    if (fechaFin && horaFin) {
-        // Combina fecha y hora para crear un objeto Date
-        const dateTimeEnd = new Date(`${fechaFin}T${horaFin}`);
-        // Retorna el Timestamp de Firebase
-        return Timestamp.fromDate(dateTimeEnd);
-    }
-    return null; // Si no hay valores válidos, retorna null
-};
+    const getEndTimestamp = () => {
+        const { fechaFin, horaFin } = user;
+        if (fechaFin && horaFin) {
+            const dateTimeEnd = new Date(`${fechaFin}T${horaFin}`);
+            return Timestamp.fromDate(dateTimeEnd);
+        }
+        return null;
+    };
 
     const reservarMesa = async (e) => {
         e.preventDefault();
         const confirmSubmit = window.confirm("¿Estás seguro de que deseas enviar el formulario?");
         if (!confirmSubmit) return;
-    
-        // Verificar si la imagen es válida
+
         if (!imageFile || errorMessage) return;
-    
+
         let imageUrl = '';
         if (imageFile) {
-        const uniqueImageName = `images/${Date.now()}-${imageFile.name}`;
-        const imageRef = ref(storage, uniqueImageName);
-        await uploadBytes(imageRef, imageFile);
-        imageUrl = await getDownloadURL(imageRef);
+            const uniqueImageName = `images/${Date.now()}-${imageFile.name}`;
+            const imageRef = ref(storage, uniqueImageName);
+            await uploadBytes(imageRef, imageFile);
+            imageUrl = await getDownloadURL(imageRef);
         }
-    
-        try {
-        const collectionRef2 = collection(db, 'menu');
-    
-        // Si es una actividad periódica, genera múltiples entradas
-        if (user.esPeriodica) {
-            const { fecha, hora, fechaFin, horaFin, frecuencia, fechaRepeticionFin } = user;
-            
-            const fechaInicio = new Date(`${fecha}T${hora}`);
-            const fechaTermino = new Date(`${fechaFin}T${horaFin}`);
-            const fechaFinRepeticion = new Date(fechaRepeticionFin);
-            fechaFinRepeticion.setDate(fechaFinRepeticion.getDate() + 1)
-            const incrementos = {
-            diaria: 1,
-            semanal: 7,
-            mensual: 30
-            };
-    
-            const reservas = [];
-            let fechaActual = new Date(fechaInicio);
-            let fechaFinalizacion= new Date(fechaTermino)
 
-            while (fechaActual <= fechaFinRepeticion) {
-            reservas.push({
-                ...user,
-                fechaHoraActividad: Timestamp.fromDate(fechaActual),
-                fechaHoraFinActividad: Timestamp.fromDate(fechaFinalizacion),
-                image: imageUrl
-            });
-    
-            // Incrementar la fecha según la frecuencia
-            fechaActual.setDate(fechaActual.getDate() + incrementos[frecuencia]);
-            fechaFinalizacion.setDate(fechaFinalizacion.getDate() + incrementos[frecuencia]);
+        try {
+            const collectionRef2 = collection(db, 'menu');
+
+            if (user.esPeriodica) {
+                const { fecha, hora, fechaFin, horaFin, frecuencia, cantidadActividades } = user;
+
+                const fechaInicio = new Date(`${fecha}T${hora}`);
+                const fechaTermino = new Date(`${fechaFin}T${horaFin}`);
+                
+                const incrementos = {
+                    diaria: 1,
+                    semanal: 7,
+                    // mensual: 30
+                };
+
+                let repeticiones = parseInt(cantidadActividades, 10) || 0;
+
+                console.log(repeticiones);
+                if (isNaN(repeticiones) || repeticiones < 2 || repeticiones > 5) {
+                    console.log("Se activará la alerta.");
+                    alert("La cantidad de actividades debe estar entre 2 y 5.");
+                    return;
+                }
+
+                const reservas = [];
+                let fechaActual = new Date(fechaInicio);
+                let fechaFinalizacion = new Date(fechaTermino);
+
+                for (let i = 0; i < repeticiones; i++) {
+                    reservas.push({
+                        ...user,
+                        fechaHoraActividad: Timestamp.fromDate(fechaActual),
+                        fechaHoraFinActividad: Timestamp.fromDate(fechaFinalizacion),
+                        image: imageUrl
+                    });
+
+                    fechaActual.setDate(fechaActual.getDate() + incrementos[frecuencia]);
+                    fechaFinalizacion.setDate(fechaFinalizacion.getDate() + incrementos[frecuencia]);
+                }
+
+                const batch = reservas.map((reserva) => addDoc(collectionRef2, reserva));
+                await Promise.all(batch);
+            } else {
+                await addDoc(collectionRef2, {
+                    ...user,
+                    fechaHoraActividad: getTimestamp(),
+                    fechaHoraFinActividad: getEndTimestamp(),
+                    image: imageUrl
+                });
             }
-    
-            // Agregar todas las reservas generadas a Firebase
-            const batch = reservas.map((reserva) => addDoc(collectionRef2, reserva));
-            await Promise.all(batch);
-        } else {
-            // Si no es periódica, agregar una sola entrada
-            await addDoc(collectionRef2, {
-            ...user,
-            fechaHoraActividad: getTimestamp(),
-            fechaHoraFinActividad: getEndTimestamp(),
-            image: imageUrl
-            });
-        }
         } catch (error) {
-        console.log(error);
+            console.log(error);
         }
-    
+
         setUser({ ...valoresIniciales });
         setImageFile(null);
-        await window.location.reload(true);
+        setShowModal(true);
     };
-
+    const handleCloseModal = async () => {
+        setShowModal(false);
+        await new Promise(resolve => setTimeout(resolve, 300)); // Pequeño delay opcional
+        window.location.reload(true);
+    };
     return (
         <div>
             <Form className='m-4 p-4' onSubmit={reservarMesa}>
-              <fieldset>
-                <Form.Group className="mb-3 m-2">
-                <Form.Label>¿Es una actividad periódica?</Form.Label>
-                    <Form.Check 
-                    type="checkbox" 
-                    label="Sí" 
-                    onChange={(e) => setUser({ ...user, esPeriodica: e.target.checked })} 
-                    checked={user.esPeriodica || false} 
-                    name="esPeriodica" 
-                    />
-
-                    {user.esPeriodica && (
-                    <>
-                        <Form.Label>Frecuencia de la actividad</Form.Label>
-                        <Form.Select 
-                        onChange={catchInputs} 
-                        value={user.frecuencia} 
-                        required 
-                        name="frecuencia" 
-                        >
-                        <option value="diaria">Diaria</option>
-                        <option value="semanal">Semanal</option>
-                        {/* <option value="mensual">Mensual</option> */}
-                        </Form.Select>
-
-                        <Form.Label>Fecha de finalización de las actividades (Día de la ultima actividad)</Form.Label>
-                        <Form.Control 
-                        onChange={catchInputs} 
-                        value={user.fechaRepeticionFin || ''} 
-                        type="date" 
-                        name="fechaRepeticionFin" 
-                        required 
+                <fieldset>
+                    <Form.Group className="mb-3 m-2">
+                        <Form.Label>¿Es una actividad periódica?</Form.Label>
+                        <Form.Check 
+                            type="checkbox" 
+                            label="Sí" 
+                            onChange={(e) => setUser({ ...user, esPeriodica: e.target.checked, cantidadActividades: '' })} 
+                            checked={user.esPeriodica} 
+                            name="esPeriodica"
                         />
-                    </>
-                    )}
+
+                        {user.esPeriodica && (
+                            <>
+                                <Form.Label>Frecuencia de la actividad</Form.Label>
+                                <Form.Select 
+                                    onChange={catchInputs} 
+                                    value={user.frecuencia || "diaria"} 
+                                    required 
+                                    name="frecuencia"
+                                >
+                                    <option value="diaria">Diaria</option>
+                                    <option value="semanal">Semanal</option>
+                                    {/* <option value="mensual">Mensual (30 dias)</option> */}
+                                </Form.Select>
+
+                                <Form.Label>Cantidad de actividades (entre 2 y 5)</Form.Label>
+                                <Form.Control 
+                                    type="number"
+                                    name="cantidadActividades"
+                                    onChange={catchInputs}
+                                    min="2"
+                                    max="5"
+                                    value={user.cantidadActividades}
+                                    required
+                                />
+                            </>
+                        )}
+                    
                   <Form.Label>Nombre actividad</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
 
@@ -290,9 +294,22 @@ const Reservas = () => {
                     <option>Todas las edades</option>
                   </Form.Select>
                 </Form.Group>
+                    <Modal show={showModal} onHide={handleCloseModal} centered>
+                        <Modal.Header closeButton>
+                            <Modal.Title>¡Publicación enviada!</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>Ya has envíado la información, la publicación será revisada y aprobada en un rango entre 12 y 24 horas.</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={handleCloseModal}>
+                                Aceptar
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 <Button type="submit" className='m-2'>Publicar</Button>
                 <br />
-                <p className='d-flex justify-content-center align-items-center'>Tu publicación será revisada y aprobada en un rango entre 12 y 24 horas</p>
+                <h3 className='d-flex justify-content-center align-items-center'>Tu publicación será revisada y aprobada en un rango entre 12 y 24 horas</h3>
               </fieldset>
             </Form>
         </div>

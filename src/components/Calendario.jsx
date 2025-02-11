@@ -27,11 +27,12 @@ const [showModal, setShowModal] = useState(false);
   };
 
   const handleCloseModal = () => setShowModal(false);
-const myEventsList= [{
-  title: "today",
-  start: new Date('2024-11-18 10:22:00'),
-  end: new Date('2024-11-18 15:42:00')
-},
+  
+  const myEventsList= [{
+    title: "today",
+    start: new Date('2024-11-18 10:22:00'),
+    end: new Date('2024-11-18 15:42:00')
+  },
 {
   title: "string",
    start: new Date('2019-05-05 12:22:00'),

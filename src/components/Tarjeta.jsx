@@ -8,11 +8,24 @@ import { ListGroup } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import dayjs from 'dayjs';
 import { es } from "dayjs/locale/es";
+import { format} from 'date-fns';
+import Modal from "react-bootstrap/Modal";
 
 const Tarjeta = ({ menu, setMenu }) => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [mostrarFiltros, setMostrarFiltros] = useState(true);
   const [ordenFecha, setOrdenFecha] = useState('asc'); // Estado para el orden de fecha
+  
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  
+    const handleSelectEvent = (plato) => {
+      setSelectedEvent(plato);
+      setShowModal(true); // Mostrar modal al seleccionar un evento
+    };
+  
+    const handleCloseModal = () => setShowModal(false);
+
 
   const handleLink = (url) => {
     if (url) {
@@ -55,7 +68,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                     <ListGroup.Item
                       onClick={() => filtrarPorCategoria(plato.categoria)}
                       variant="info"
-                      key={plato.id}
+                      key={`${plato.id}-${plato.categoria}`}
                     >
                       <Button variant=''>{plato.categoria}</Button>
                     </ListGroup.Item>
@@ -86,9 +99,34 @@ const Tarjeta = ({ menu, setMenu }) => {
                         <Card.Text >{plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
                         <Card.Text >En {plato.direccion}</Card.Text>
                         <Card.Text >Edad mínima: {plato.edad}</Card.Text>
-                        <Card.Text >{plato.descripcion}</Card.Text>
+                        {/* <Card.Text >{plato.descripcion}</Card.Text> */}
                         <Button variant='link'  onClick={() => handleLink(plato.link)}>Link publicación redes</Button>
-                        {/* <br></br><Button variant="info">Ver detalles</Button> */}
+                        <br></br><Button variant="info" onClick={() => handleSelectEvent(plato)}>Ver detalles</Button>
+                          <Modal show={showModal} onHide={handleCloseModal}>
+                            <Modal.Header closeButton>
+                              <Modal.Title>Detalles de la Actividad</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              {selectedEvent && (
+                                <div className="">
+                                  <img src={selectedEvent.image} style={{ width: "100%", marginBottom: "15px", borderRadius: "5px" }}/>
+                                  <p><strong>Título:</strong> {selectedEvent.nombre}</p>
+                                  <p><strong>Fecha:</strong> {dayjs(selectedEvent.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM').toUpperCase()} / {dayjs(selectedEvent.fechaHoraActividad.toDate()).format('H:mm A')}</p>
+                                  <p>{selectedEvent.descripcion|| "Sin descripción"}</p>
+                                  <p><strong>Edad Mínima:</strong> {selectedEvent.edad || "No especificada"}</p>                                  
+                                  <p><strong>Ubicación:</strong> {selectedEvent.direccion || "No especificada"}</p>
+                                  <p><strong>Valor:</strong> {selectedEvent.precio == 0 ? "Gratis" : `$${selectedEvent.precio}`}</p>
+                                  <p><strong>Organza:</strong> {selectedEvent.organiza}</p>
+                                  <Button variant="link" href={selectedEvent.link} ><strong>Redes Click Aquí</strong></Button>
+                                </div>
+                              )}
+                            </Modal.Body>      
+                            <Modal.Footer>
+                              <Button variant="secondary" onClick={handleCloseModal}>
+                                Cerrar
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
                       </Card.Body>
                       <Card.Footer>
                         <Card.Title>{dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM').toUpperCase()} / {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Title>
