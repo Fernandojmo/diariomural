@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import { es } from "dayjs/locale/es";
 import { format} from 'date-fns';
 import Modal from "react-bootstrap/Modal";
+import { list, listAll } from 'firebase/storage';
 
 const Tarjeta = ({ menu, setMenu }) => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
@@ -54,7 +55,11 @@ const Tarjeta = ({ menu, setMenu }) => {
     const fechaB = new Date(b.fecha);
     return ordenFecha === 'asc' ? fechaA - fechaB : fechaB - fechaA;
   });
-
+  const categoriasUnicas = menu.filter((item, index, self) =>
+    index === self.findIndex((obj) => obj.categoria === item.categoria)
+  );
+  
+  console.log(categoriasUnicas);
   return (
     <div>
       <div id="menu-display" className='bg-info'>
@@ -64,11 +69,11 @@ const Tarjeta = ({ menu, setMenu }) => {
               <h4>Filtra Aquí</h4>
               <ListGroup>
                 {!mostrarFiltros && (
-                  menu.map(plato => (
+                  categoriasUnicas.map(plato => (
                     <ListGroup.Item
                       onClick={() => filtrarPorCategoria(plato.categoria)}
                       variant="info"
-                      key={`${plato.id}-${plato.categoria}`}
+                      key={`${plato.categoria}`}
                     >
                       <Button variant=''>{plato.categoria}</Button>
                     </ListGroup.Item>
@@ -112,6 +117,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                                   <img src={selectedEvent.image} style={{ width: "100%", marginBottom: "15px", borderRadius: "5px" }}/>
                                   <p><strong>Título:</strong> {selectedEvent.nombre}</p>
                                   <p><strong>Fecha:</strong> {dayjs(selectedEvent.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM').toUpperCase()} / {dayjs(selectedEvent.fechaHoraActividad.toDate()).format('H:mm A')}</p>
+                                  <p><strong>Fecha término:</strong> {dayjs(selectedEvent.fechaHoraFinActividad.toDate()).locale("es").format('dddd D MMM').toUpperCase()} / {dayjs(selectedEvent.fechaHoraFinActividad.toDate()).format('H:mm A')}</p>
                                   <p>{selectedEvent.descripcion|| "Sin descripción"}</p>
                                   <p><strong>Edad Mínima:</strong> {selectedEvent.edad || "No especificada"}</p>                                  
                                   <p><strong>Ubicación:</strong> {selectedEvent.direccion || "No especificada"}</p>
