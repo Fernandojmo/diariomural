@@ -236,7 +236,7 @@ const Reservas = () => {
                   <Form.Label>Institución que organiza</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.organiza} required name='organiza' placeholder="Institucion que organiza" />
 
-                  <Form.Label>Valor</Form.Label>
+                  <Form.Label>Valor (indicar -1 para "Consultar")</Form.Label>
                   <Form.Control onChange={catchInputs} value={user.precio} required name='precio' type="number" placeholder="Precio" />
 
                   <Form.Label>Fecha inicio de la actividad</Form.Label>
