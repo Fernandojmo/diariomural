@@ -115,7 +115,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                                   <p>{selectedEvent.descripcion|| "Sin descripción"}</p>
                                   <p><strong>Edad Mínima:</strong> {selectedEvent.edad || "No especificada"}</p>                                  
                                   <p><strong>Ubicación:</strong> {selectedEvent.direccion || "No especificada"}</p>
-                                  <p><strong>Valor:</strong> {selectedEvent.precio == 0 ? "Gratis" : `$${selectedEvent.precio}`}</p>
+                                  <p><strong>Valor:</strong> {selectedEvent.precio == 0 ? "Gratis" : selectedEvent.precio == -1 ? "Consultar" : `$${selectedEvent.precio}`}</p>
                                   <p><strong>Organza:</strong> {selectedEvent.organiza}</p>
                                   <Button variant="link" href={selectedEvent.link} ><strong>Redes Click Aquí</strong></Button>
                                 </div>

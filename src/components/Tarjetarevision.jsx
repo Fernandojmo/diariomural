@@ -60,7 +60,7 @@ const Tarjetarevision = ({ menu, handleUpdate, handleDelete }) => {
                                             <Card.Body>
                                                 <Card.Text className='text-info'>{plato.categoria}</Card.Text>
                                                 <Card.Title>{plato.nombre}</Card.Title>
-                                                <Card.Text>Valor: {plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
+                                                <Card.Text>Valor: {plato.precio == 0 ? "Gratis" : plato.precio == -1 ? "Consultar" : `$${plato.precio}`}</Card.Text>
                                                 <Card.Text>Lugar: {plato.direccion}</Card.Text>
                                                 <Card.Text>Responsable: {plato.persona}</Card.Text>
                                                 <Card.Text>Fono: {plato.telefono}</Card.Text>
