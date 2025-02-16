@@ -52,6 +52,7 @@ console.log("data desde myeventlist",myEventsList)
         events={eventosCalendario[0]}
         startAccessor="start"
         endAccessor="end"
+        defaultView='agenda'
         style={{ height: 500 }}
         onSelectEvent={handleSelectEvent}
         messages={{
