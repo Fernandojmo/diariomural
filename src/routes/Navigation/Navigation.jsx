@@ -52,7 +52,7 @@ const Navigation = () => {
                       <Nav className="flex-grow-1 pe-3">
                         <Nav.Link href="/" className="text-white bg-dark border-dark rounded m-1 p-2">Actividades</Nav.Link>
                         <Nav.Link href="/publicar" className="text-white bg-dark border-dark rounded m-1 p-2">Publicar</Nav.Link>
-                        <Nav.Link href="/programacion" className="text-white bg-dark border-dark rounded m-1 p-2">Calendario</Nav.Link>
+                        <Nav.Link href="/programacion" className="text-white bg-dark border-dark rounded m-1 p-2">Agenda</Nav.Link>
                         <Nav.Link href="/quienes-somos" className="text-white bg-dark border-dark rounded m-1 p-2">Quienes somos</Nav.Link>
                       </Nav>
                     </Offcanvas.Body>
@@ -92,11 +92,9 @@ const Navigation = () => {
                   </Offcanvas.Header>
                   <Offcanvas.Body>
                     <Nav className="flex-grow-1 pe-3">
-
-                      
                       <Nav.Link href="/" className="text-white bg-dark border-dark rounded m-1 p-2">Actividades</Nav.Link>
                       <Nav.Link href="/publicar" className="text-white bg-dark border-dark rounded m-1 p-2">Publicar</Nav.Link>
-                      <Nav.Link href="/programacion" className="text-white bg-dark border-dark rounded m-1 p-2">Calendario</Nav.Link>
+                      <Nav.Link href="/programacion" className="text-white bg-dark border-dark rounded m-1 p-2">Agenda</Nav.Link>
                       <Nav.Link href="/quienes-somos" className="text-white bg-dark border-dark rounded m-1 p-2">Quienes somos</Nav.Link>
                     </Nav>
                   </Offcanvas.Body>

@@ -7,10 +7,7 @@ import Ratio from 'react-bootstrap/Ratio';
 import { ListGroup } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import dayjs from 'dayjs';
-import { es } from "dayjs/locale/es";
-import { format} from 'date-fns';
 import Modal from "react-bootstrap/Modal";
-import { list, listAll } from 'firebase/storage';
 
 const Tarjeta = ({ menu, setMenu }) => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
@@ -28,13 +25,13 @@ const Tarjeta = ({ menu, setMenu }) => {
     const handleCloseModal = () => setShowModal(false);
 
 
-  const handleLink = (url) => {
-    if (url) {
-      window.open(url, '_blank'); // Abre el enlace en una nueva pestaña
-    } else {
-      console.error("URL no válida");
-    }
-  };
+  // const handleLink = (url) => {
+  //   if (url) {
+  //     window.open(url, '_blank'); // Abre el enlace en una nueva pestaña
+  //   } else {
+  //     console.error("URL no válida");
+  //   }
+  // };
 
   const filtrarPorCategoria = (categoria) => {
     setCategoriaSeleccionada(categoria);
@@ -99,22 +96,22 @@ const Tarjeta = ({ menu, setMenu }) => {
               <Row className="g-4 justify-content-center">
                 {menuOrdenado.map(plato => (
                   <Col className="d-flex" key={plato.id}>
-                    <Card className=" mb-2 text-center fixed-card" style={{ width: '400px', height: '900px', overflow: 'hidden' }}>
+                    <Card className="text-center fixed-card" style={{ width: '400px', height: '650px', overflow: 'hidden' }}>
                       <CardHeader>
-                        <Card.Subtitle>Organiza: {plato.organiza}</Card.Subtitle>
+                        <Card.Subtitle>{dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM YYYY').toUpperCase()} / {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Subtitle>
                       </CardHeader>
                       <Ratio key={'1x1'} aspectRatio={'1x1'}>
-                        <Card.Img className="p-2" variant="top" src={plato.image} style={{ height: '350px', objectFit: 'cover' }} />
+                        <Card.Img className="" variant="top" src={plato.image} style={{ height: '350px', objectFit: 'cover' }} />
                       </Ratio>
                       <Card.Body>
-                        <Card.Text >{plato.categoria}</Card.Text>
+                        {/* <Card.Text >{plato.categoria}</Card.Text> */}
                         <Card.Title >{plato.nombre.toUpperCase()}</Card.Title>
-                        <Card.Text >{plato.precio == 0 ? "Gratis" : plato.precio == -1 ? "Consultar valor a organizador" : `$${plato.precio}`}</Card.Text>
+                        {/* <Card.Text >{plato.precio == 0 ? "Gratis" : plato.precio == -1 ? "Consultar valor a organizador" : `$${plato.precio}`}</Card.Text> */}
                         <Card.Text >En {plato.direccion}</Card.Text>
-                        <Card.Text >Edad mínima: {plato.edad}</Card.Text>
+                        {/* <Card.Text >Edad mínima: {plato.edad}</Card.Text> */}
                         {/* <Card.Text >{plato.descripcion}</Card.Text> */}
-                        <Button variant='link'  onClick={() => handleLink(plato.link)}>Link publicación redes</Button>
-                        <br></br><Button variant="info" onClick={() => handleSelectEvent(plato)}>Ver detalles</Button>
+                        {/* <Button variant='link'  onClick={() => handleLink(plato.link)}>Link publicación redes</Button> */}
+                        <Button variant="info" onClick={() => handleSelectEvent(plato)}>Ver detalles</Button>
                           <Modal show={showModal} onHide={handleCloseModal}>
                             <Modal.Header closeButton>
                               <Modal.Title>Detalles de la Actividad</Modal.Title>
@@ -143,7 +140,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                           </Modal>
                       </Card.Body>
                       <Card.Footer>
-                        <Card.Title>{dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM YYYY').toUpperCase()} / {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Title>
+                        <Card.Title>Organiza: {plato.organiza}</Card.Title>
                       </Card.Footer>
                     </Card>
                   </Col>
