@@ -283,7 +283,7 @@ const Reservas = () => {
 
                 <Form.Label htmlFor="disabledSelect">Edad mínima recomendada</Form.Label>
                 <Form.Select onChange={catchInputs} value={user.edad} required name='edad' id="disabledSelect">
-                    <option>0+ años</option>
+                    <option>Todas las edades</option>
                     <option>5+ años</option>
                     <option>10+ años</option>
                     <option>15+ años</option>
@@ -291,7 +291,6 @@ const Reservas = () => {
                     <option>24+ años</option>
                     <option>35+ años</option>
                     <option>60+ años</option>
-                    <option>Todas las edades</option>
                   </Form.Select>
                 </Form.Group>
                     <Modal show={showModal} onHide={handleCloseModal} centered>

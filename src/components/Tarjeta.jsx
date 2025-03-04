@@ -50,11 +50,19 @@ const Tarjeta = ({ menu, setMenu }) => {
     : menu;
 
   // Ordena las tarjetas por fecha según el valor de 'ordenFecha'
+  // const menuOrdenado = [...menuFiltrado].sort((a, b) => {
+  //   const fechaA = new Date(a.fecha);
+  //   const fechaB = new Date(b.fecha);
+  //   return ordenFecha === 'asc' ? fechaA - fechaB : fechaB - fechaA;
+  // });
   const menuOrdenado = [...menuFiltrado].sort((a, b) => {
-    const fechaA = new Date(a.fecha);
-    const fechaB = new Date(b.fecha);
+    const fechaA = a.fechaHoraActividad.toMillis(); // Convertir Timestamp a milisegundos
+    const fechaB = b.fechaHoraActividad.toMillis();
+
     return ordenFecha === 'asc' ? fechaA - fechaB : fechaB - fechaA;
-  });
+});
+
+
   const categoriasUnicas = menu.filter((item, index, self) =>
     index === self.findIndex((obj) => obj.categoria === item.categoria)
   );
@@ -101,7 +109,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                       <Card.Body>
                         <Card.Text >{plato.categoria}</Card.Text>
                         <Card.Title >{plato.nombre.toUpperCase()}</Card.Title>
-                        <Card.Text >{plato.precio == 0 ? "Gratis" : `$${plato.precio}`}</Card.Text>
+                        <Card.Text >{plato.precio == 0 ? "Gratis" : plato.precio == -1 ? "Consultar valor a organizador" : `$${plato.precio}`}</Card.Text>
                         <Card.Text >En {plato.direccion}</Card.Text>
                         <Card.Text >Edad mínima: {plato.edad}</Card.Text>
                         {/* <Card.Text >{plato.descripcion}</Card.Text> */}
@@ -135,7 +143,7 @@ const Tarjeta = ({ menu, setMenu }) => {
                           </Modal>
                       </Card.Body>
                       <Card.Footer>
-                        <Card.Title>{dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM').toUpperCase()} / {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Title>
+                        <Card.Title>{dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM YYYY').toUpperCase()} / {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Title>
                       </Card.Footer>
                     </Card>
                   </Col>
