@@ -96,18 +96,19 @@ const Tarjeta = ({ menu, setMenu }) => {
               <Row className="g-4 justify-content-center">
                 {menuOrdenado.map(plato => (
                   <Col className="d-flex" key={plato.id}>
-                    <Card className="text-center fixed-card" style={{ width: '400px', height: '650px', overflow: 'hidden' }}>
+                    <Card className="text-center fixed-card" style={{width:'350px', height: '640px', overflow: 'hidden' }}>
                       <CardHeader>
                         <Card.Subtitle>{dayjs(plato.fechaHoraActividad.toDate()).locale("es").format('dddd D MMM YYYY').toUpperCase()} / {dayjs(plato.fechaHoraActividad.toDate()).format('H:mm A')}</Card.Subtitle>
                       </CardHeader>
-                      <Ratio key={'1x1'} aspectRatio={'1x1'}>
-                        <Card.Img className="" variant="top" src={plato.image} style={{ height: '350px', objectFit: 'cover' }} />
-                      </Ratio>
+                      
+                      {/* <Ratio key={'1x1'} aspectRatio={'1x1'}> */}
+                        <Card.Img className="" variant="top" src={plato.image} style={{ height: '400px', objectFit: 'cover' }} />
+                      {/* </Ratio> */}
                       <Card.Body>
                         {/* <Card.Text >{plato.categoria}</Card.Text> */}
-                        <Card.Title >{plato.nombre.toUpperCase()}</Card.Title>
+                        <Card.Title className='mt-2'>{plato.nombre.toUpperCase()}</Card.Title>
                         {/* <Card.Text >{plato.precio == 0 ? "Gratis" : plato.precio == -1 ? "Consultar valor a organizador" : `$${plato.precio}`}</Card.Text> */}
-                        <Card.Text >En {plato.direccion}</Card.Text>
+                        <Card.Text >{plato.direccion}</Card.Text>
                         {/* <Card.Text >Edad mínima: {plato.edad}</Card.Text> */}
                         {/* <Card.Text >{plato.descripcion}</Card.Text> */}
                         {/* <Button variant='link'  onClick={() => handleLink(plato.link)}>Link publicación redes</Button> */}
@@ -139,9 +140,9 @@ const Tarjeta = ({ menu, setMenu }) => {
                             </Modal.Footer>
                           </Modal>
                       </Card.Body>
-                      <Card.Footer>
+                      {/* <Card.Footer>
                         <Card.Title>Organiza: {plato.organiza}</Card.Title>
-                      </Card.Footer>
+                      </Card.Footer> */}
                     </Card>
                   </Col>
                 ))}
