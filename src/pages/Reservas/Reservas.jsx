@@ -217,7 +217,9 @@ const Reservas = () => {
                         )}
                     
                   <Form.Label>Nombre actividad</Form.Label>
-                  <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" />
+                  <Form.Control onChange={catchInputs} value={user.nombre} required name='nombre' placeholder="Nombre" maxLength={50} />
+                  <small className="text-muted">{50 - (user.nombre?.length || 0)} caracteres restantes</small>
+                  <br/>
 
                   <Form.Label htmlFor="disabledSelect">Categoría</Form.Label>
                   <Form.Select onChange={catchInputs} value={user.categoria} required name='categoria' id="disabledSelect">
@@ -254,9 +256,11 @@ const Reservas = () => {
                   <Form.Label>Afiche o imagen</Form.Label>
                   <Form.Control type="file" onChange={handleImageChange} required />
                   {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                  <Form.Label>Dirección de la actividad (Si es online indicar ONLINE)</Form.Label>
-                  <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" />
 
+                  <Form.Label>Dirección de la actividad (Si es online indicar ONLINE)</Form.Label>
+                  <Form.Control onChange={catchInputs} value={user.direccion} required name='direccion' placeholder="Dirección" maxLength={70}/>
+                  <small className="text-muted">{70 - (user.direccion?.length || 0)} caracteres restantes</small>
+                  <br/>
                   <Form.Label>Descripción de actividad o bases (concurso)</Form.Label>
                   <Form.Control 
                     as="textarea"
